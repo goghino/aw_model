@@ -2,13 +2,18 @@
 v = 10;             %m/s [10 knots] 
 Kb = 1;             %braking ratio
 alpha = 0.01;       %[rad]
-Fz = 140000;        %[N]
+Fz_total = 140000;        %[N]
+Fz = 40000;
 
 %tire spec [AGARD and http://www.b737.org.uk/techspecsdetailed.htm]
 diam = 1.2446;  %m [49 ins]
 width = 0.4318; %m [17 ins]
-p = 190;    %[psi]
-pr = 210;   %[psi] 220 web, 500->x=0.2
+p = 140;    %[psi]
+pr = 210;   %[psi] 220 web
+
+% x==0.2 at rated load
+xxx = Fz / (p * diam*39.3701 * sqrt(width*39.3701*diam*39.3701));
+
 
 %DRY RUNWAY friction for longitudal braking force
 mu_Bmax = (1 - 0.0011*p)*0.912 + v*1.94384*(-0.00079);
