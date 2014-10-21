@@ -28,15 +28,15 @@ WFxb = Kb * Wmu_Beff * Fz;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %DRY COEFS plot
-bmaxi = zeros(161,1);
-beffi = zeros(161,1);
-pslimi = zeros(161,1);
-Wmu_Bmaxi = zeros(161,1);
-Wmu_Beffi = zeros(161,1);
-Wmu_PSImaxi = zeros(161,1);
-Wmu_PSIlimi = zeros(161,1);
-vi = 0:0.1:16;
-for i = 1:161
+bmaxi = zeros(101,1);
+beffi = zeros(101,1);
+pslimi = zeros(101,1);
+Wmu_Bmaxi = zeros(101,1);
+Wmu_Beffi = zeros(101,1);
+Wmu_PSImaxi = zeros(101,1);
+Wmu_PSIlimi = zeros(101,1);
+vi = 0:1:100;
+for i = 1:101
    bmaxi(i) = (1 - 0.0011*p)*0.912 + vi(i)*1.94384*(-0.00079);
    beffi(i) = bmaxi(i)*0.94 - 0.03;
    pslimi(i) = sqrt(1-(beffi(i)/bmaxi(i)*Kb)^2) * bmaxi(i);
