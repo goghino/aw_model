@@ -71,8 +71,9 @@ par.muR_boeing = 0.02; %Boeing, J.Rankin
 %tspan=0:0.1:100;
 %sim('aero_ground_model',tspan);
 %plot(sn(:,1),sn(:,2), 'k-', sl(:,1),sl(:,2), 'b-', sr(:,1),sr(:,2), 'r-');
+
 %plot(X.Data, Y.Data, 'r-');
 
-%A = [1 2; (par.l_xN-par.mu_R*par.l_zN) 2*(-par.l_xR-par.mu_R*par.l_zR)];
+%A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR)];
 %B = [par.weight*par.g ; -par.l_zT*par.max_thrust];
 %linsolve(A,B);

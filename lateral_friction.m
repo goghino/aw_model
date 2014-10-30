@@ -9,6 +9,7 @@
 
 function res = lateral_friction(ENVIRON,yaw_alpha,Fz,p,pr,diam,width,v,Kb)
     res = -10;
+    Fz = Fz - 10000;
 
     if ENVIRON == 0
         %DRY RUNWAY friction for longitudal braking force
@@ -20,7 +21,7 @@ function res = lateral_friction(ENVIRON,yaw_alpha,Fz,p,pr,diam,width,v,Kb)
             mu_skid = 0.31 * mu_Bmax;
         end
         mu_PSImax = mu_Bmax;
-        mu_PSIlim = sqrt(1-(mu_Beff/mu_Bmax*Kb)^2) * mu_Bmax;
+        mu_PSIlim = sqrt(1-((mu_Beff/mu_Bmax)*Kb)^2) * mu_Bmax;
     else
         %WET RUNWAY friction for longitudal braking force 
         mu_Bmax = (0.91 - 0.001*p)*(1 + (v*1.94384)*(-0.0052));
@@ -65,7 +66,7 @@ function res = lateral_friction(ENVIRON,yaw_alpha,Fz,p,pr,diam,width,v,Kb)
         elseif(3.14-h <= abs(yaw_alpha))
             i = 0;
         else
-            errordlg('Non-valid range for i-function!!!');
+            errordlg(sprintf('Non-valid range for i-function!!! PSI=%f h=%f',yaw_alpha,h));
         end
 
         %subsidiary function j

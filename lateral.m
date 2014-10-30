@@ -171,16 +171,16 @@ title(sprintf('Lateral friction coefficient in different environ. conditions, PS
 % 
 
 %DRY LATERAL FORCE COEFF plot vs.  FORCE
-Fy = zeros(1476,1);
-Fy1 = zeros(1476,1);
+Fy = zeros(1500,1);
+Fy1 = zeros(1500,1);
 
-Fz_i = 2500:100:150000;
+Fz_i = 1:100:150000;
 
 aalpha = 10*0.01745;
 v1 = 10;
 v2 = 50;
 
-for i = 1:1476
+for i = 1:1500
     Fy(i)  = lateral_friction(DRY,aalpha,Fz_i(i),p,pr,diam,width,v1,Kb);
     Fy1(i) = lateral_friction(DRY,aalpha,Fz_i(i),p,pr,diam,width,v2,Kb);
     
