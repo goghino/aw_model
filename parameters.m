@@ -48,7 +48,10 @@ par.c1_RL_alpha = 1.06*10^(-5);
 par.c0_RL_alpha = 6.72;
 
 % tire pressure [psi]
-par.pressure = 200; %http://www.b737.org.uk/techspecsdetailed.htm
+par.p_rated = 210; %http://www.b737.org.uk/techspecsdetailed.htm
+par.p = 140;    %[psi]
+par.diam = 1.2446;  %m [49 ins]
+par.width = 0.4318; %m [17 ins]
 
 %environment settings
 environ.dry = 1;

@@ -1,15 +1,14 @@
 %Lateral force  as a function of:
 %ENVIRON - environmental conditions, 0-DRY, 1-WET runway
 %yaw_alpha - angle between longitudal tyre axis and direction of movement
-%Fz - vertical force on wheel
-%p,pr - tire pressure, rated tire pressure
-%diam,width - tire diameter and width
-%v - velocity scalar
-%Kb - braking ratio
+%Fz - vertical force on wheel [N]
+%p,pr - tire pressure, rated tire pressure [psi]
+%diam,width - tire diameter and width [m]
+%v - velocity scalar [m/s]
+%Kb - braking ratio (0-1)
 
 function res = lateral_friction(ENVIRON,yaw_alpha,Fz,p,pr,diam,width,v,Kb)
     res = -10;
-    Fz = Fz - 10000;
 
     if ENVIRON == 0
         %DRY RUNWAY friction for longitudal braking force
