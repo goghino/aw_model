@@ -69,7 +69,9 @@ par.muR_ice = 0.011; %Truck tires on ice
 par.muR_snow = 0.013; %Truck tire on hard-packed snow
 par.muR_boeing = 0.02; %Boeing, J.Rankin
 
-
+%velocity below which lateral forces will be reduced
+% Fy *= tahn(4*v/par.V_LIM_Fy)
+par.V_LIM_Fy = 4;
 
 %tspan=0:0.1:100;
 %sim('aero_ground_model',tspan);
