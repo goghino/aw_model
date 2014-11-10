@@ -19,8 +19,8 @@ for i = 1:201
 end
 
 %mu_PSI = Fy/Fz
-wFyN = wFyN ./ Fz_N;
-wFyR = wFyR ./ Fz_R;
+wFyN = wFyN;% ./ Fz_N; %absolute force / lateral coeff.
+wFyR = wFyR;% ./ Fz_R;
 
 figure();
 plot(walpha,wFyN,'r-',walpha,wFyR,'b-');

@@ -80,8 +80,24 @@ par.Fy_zero = 0.01;
 %sim('aero_ground_model',tspan);
 %plot(sn(:,1),sn(:,2), 'k-', sl(:,1),sl(:,2), 'b-', sr(:,1),sr(:,2), 'r-');
 
-%plot(X.Data, Y.Data, 'r-');
-
+%---------------------------------
+%Solver for weight decomposition
+%----------------------------------
 %A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR)];
 %B = [par.weight*par.g ; -par.l_zT*par.max_thrust];
 %linsolve(A,B);
+
+%------------------------
+%analytical turn radius
+%------------------------
+L = par.l_xN + par.l_xR;
+steer = 0.1;
+
+R_dash = L/sin(steer);
+R_dash_dash = R_dash * cos(steer);
+R = sqrt(par.l_xR^2 + R_dash_dash^2)
+
+%------------------------
+%Trajectory visualization
+%------------------------
+%plot(X.Data, Y.Data, 'r-');
