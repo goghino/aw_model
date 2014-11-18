@@ -3,6 +3,7 @@ par.max_thrust = 111205;
 
 %General Aircraft Weight [kg]
 par.weight = 45420;
+par.weight1 = 75000;
 par.g = 9.80665;
 
 %Aircraft inertia in Z-axis [kg*m^2]
@@ -95,7 +96,8 @@ steer = 0.1;
 
 R_dash = L/sin(steer);
 R_dash_dash = R_dash * cos(steer);
-R = sqrt(par.l_xR^2 + R_dash_dash^2)
+R = sqrt(par.l_xR^2 + R_dash_dash^2);
+2*R
 
 %------------------------
 %Trajectory visualization
