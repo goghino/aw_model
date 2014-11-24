@@ -84,13 +84,13 @@ par.Fy_zero = 0.01;
 %---------------------------------
 %Solver for weight decomposition
 %----------------------------------
-%Kb_l = 0.1;
-%Kb_r = 0.1;
-%mu_Beff = 0.6;
-%K = (Kb_l + Kb_r)*mu_Beff;
-%A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR-K*par.l_zR)];
-%B = [par.weight*par.g ; -par.l_zT*par.max_thrust];
-%linsolve(A,B)
+Kb_l = 0;
+Kb_r = 0;
+mu_Beff = 0.6;
+K = (Kb_l + Kb_r)*mu_Beff;
+A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR-K*par.l_zR)];
+B = [par.weight*par.g ; -par.l_zT*13000];
+linsolve(A,B)
 
 %------------------------
 %analytical turn radius
