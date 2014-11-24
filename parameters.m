@@ -72,10 +72,9 @@ par.muR_boeing = 0.02; %Boeing, J.Rankin
 
 %velocity below which lateral forces will be reduced
 % Fy *= tahn(4*v/par.V_LIM_Fy)
-par.Fy_tanh = 0.1;
 par.Fx_tanh = 0.01;
 %when velocity goes below this limit, no lateral force is generated
-par.Fy_zero = 0.01;
+par.min_velo = 0.005;
 
 %tspan=0:0.1:100;
 %sim('aero_ground_model',tspan);
