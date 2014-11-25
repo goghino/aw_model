@@ -95,7 +95,7 @@ linsolve(A,B)
 %analytical turn radius
 %------------------------
 L = par.l_xN + par.l_xR;
-steer = 0.1;
+steer = 0.7;
 
 R_dash = L/sin(steer);
 R_dash_dash = R_dash * cos(steer);
