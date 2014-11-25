@@ -1,3 +1,16 @@
+%INITIAL CONDITIONS FOR THE MODEL
+par.vx_init = 5; %m/s
+par.vy_init = 0; %m/s
+par.wz_init = 0; %rad/s
+
+par.x_init = 0; %m
+par.y_init = 0; %m
+par.heading_init = pi/2; %rad
+
+par.x_target = 1000; %m
+par.y_target = -1000; %m
+par.v_target = 5; %m/s
+
 %Max engine thrust [N]
 par.max_thrust = 111205;
 
