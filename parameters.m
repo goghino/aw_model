@@ -1,7 +1,10 @@
 %INITIAL CONDITIONS FOR THE MODEL
-par.vx_init = 5; %m/s
+par.vx_init = 2; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
+
+par.kbr = 0.0;
+par.kbl = 0.0;
 
 par.x_init = 0; %m
 par.y_init = 0; %m
@@ -13,6 +16,10 @@ par.v_target = 5; %m/s
 
 %Max engine thrust [N]
 par.max_thrust = 111205;
+
+%velocity below which lateral forces will be reduced
+par.min_velo = 0.005; %m/s
+par.min_force = 1000; %N
 
 %General Aircraft Weight [kg]
 par.weight = 45420;
@@ -82,12 +89,6 @@ par.muR_wet = 0.007; %Truck tires on wet concrete
 par.muR_ice = 0.011; %Truck tires on ice
 par.muR_snow = 0.013; %Truck tire on hard-packed snow
 par.muR_boeing = 0.02; %Boeing, J.Rankin
-
-%velocity below which lateral forces will be reduced
-% Fy *= tahn(4*v/par.V_LIM_Fy)
-par.Fx_tanh = 0.01;
-%when velocity goes below this limit, no lateral force is generated
-par.min_velo = 0.005;
 
 %tspan=0:0.1:100;
 %sim('aero_ground_model',tspan);
