@@ -12,11 +12,14 @@ par.heading_init = pi/2; %rad
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
-par.x_target = 1000; %m
-par.y_target = -1000; %m
+par.x_target = 0; %m
+par.y_target = 1000; %m
 
 %Max engine thrust [N]
 par.max_thrust = 111205;
+
+%Max steering angle
+par.max_delta = 1.22; %rad
 
 %General Aircraft Weight [kg]
 par.weight = 45420;
