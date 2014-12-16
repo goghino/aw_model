@@ -1,5 +1,5 @@
 %INITIAL CONDITIONS FOR THE MODEL
-par.vx_init = 4; %m/s
+par.vx_init = 5; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
@@ -10,9 +10,10 @@ par.x_init = 0; %m
 par.y_init = 0; %m
 par.heading_init = pi/2; %rad
 
+%TARGET CONDITIONS FOR THE MODEL
+par.v_target = 5; %m/s
 par.x_target = 1000; %m
 par.y_target = -1000; %m
-par.v_target = 5; %m/s
 
 %Max engine thrust [N]
 par.max_thrust = 111205;
@@ -87,7 +88,7 @@ par.muR_snow = 0.013; %Truck tire on hard-packed snow
 par.muR_boeing = 0.02; %Boeing, J.Rankin
 
 %velocity below which model will be discontinually reset to zero state
-par.min_velo = 0.005; %m/s
+par.min_velo = 0.0005; %m/s
 par.min_force = par.g*par.weight*par.muR_boeing; %N
 
 %tspan=0:0.1:100;
@@ -103,7 +104,7 @@ mu_Beff = 0.6;
 K = (Kb_l + Kb_r)*mu_Beff;
 A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR-K*par.l_zR)];
 B = [par.weight*par.g ; -par.l_zT*13000];
-linsolve(A,B)
+linsolve(A,B);
 
 %------------------------
 %analytical turn radius
@@ -114,9 +115,11 @@ steer = 0.7;
 R_dash = L/sin(steer);
 R_dash_dash = R_dash * cos(steer);
 R = sqrt(par.l_xR^2 + R_dash_dash^2);
-2*R
 
 %------------------------
 %Trajectory visualization
 %------------------------
 %plot(X.Data, Y.Data, 'r-');
+%set_param('aero_ground_model', 'AlgebraicLoopSolver', 'LineSearch');
+
+disp('MODEL INITIALIZED...');
