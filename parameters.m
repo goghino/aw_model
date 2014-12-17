@@ -15,8 +15,8 @@ par.v_target = 5; %m/s
 par.x_target = 0; %m
 par.y_target = 1000; %m
 
-%Max engine thrust [N]
-par.max_thrust = 111205;
+%Max 2-engine thrust [N]
+par.max_thrust = 2*111205;
 
 %Max steering angle
 par.max_delta = 1.22; %rad
