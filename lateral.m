@@ -22,6 +22,34 @@ close all;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%braking coeff in various ENVIRON and speed
+Fy = zeros(301,1);
+Fy1 = zeros(301,1);
+Fy2 = zeros(301,1);
+Fy3 = zeros(301,1);
+Fy4 = zeros(301,1);
+
+velo = 0:0.1:30;
+
+for i = 1:301
+    Fy(i)  = braking_friction(DRY,p,velo(i));
+    Fy1(i)  = braking_friction(WET,p,velo(i));
+    Fy2(i)  = braking_friction(DRY,0.8*p,velo(i));
+    Fy3(i)  = braking_friction(WET,0.8*p,velo(i));
+    Fy4(i)  = braking_friction(DRY,1.2*p,velo(i));
+
+end
+
+figure();
+plot(velo, Fy, 'b-', velo, Fy1, 'bo', velo, Fy2, 'r-', velo, Fy3, 'ro', velo, Fy4, 'g-');
+legend('nominal DRY','nominal WET','0.8p DRY','0.8p WET','1.2p DRY');
+xlabel('Velocity [m/s]') % x-axis label
+ylabel('Friction coeff.') % y-axis label
+title('Effective braking friction coefficient vs. speed');
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %DRY LATERAL FORCE COEFF plot vs. yaw angle
 Fy = zeros(315,1);
