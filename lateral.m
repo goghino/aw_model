@@ -47,6 +47,7 @@ xlabel('Velocity [m/s]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
 title('Effective braking friction coefficient vs. speed');
 
+return;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,6 +105,16 @@ legend('nominal dry','nominal wet','1.2Fz dry','1.2Fz wet');
 xlabel('Tire angle [deg]') % x-axis label
 ylabel('friction coeff.') % y-axis label
 title(sprintf('Lateral friction coefficient in different environ. conditions, v=%d m/s, Fz=%d kN and Kb=%f',v, Fz/1000,Kb));
+
+%ENGINE MODEL
+% figure();
+% set(gca,'FontSize',30,'fontWeight','bold');
+% set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
+% plot(step.Time, step.Data, step.Time, thrust.Data, 'r-', 'LineWidth',4);
+% legend('Step', 'Response');
+% xlabel('Time [s]') % x-axis label
+% ylabel('Force [N]') % y-axis label
+% title('Engine Model Step Response');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
