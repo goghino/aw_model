@@ -21,13 +21,20 @@ function res = lateral_friction(ENVIRON,yaw_alpha,Fz,p,pr,diam,width,v,Kb)
         end
         mu_PSImax = mu_Bmax;
         mu_PSIlim = sqrt(1-((mu_Beff/mu_Bmax)*Kb)^2) * mu_Bmax;
-    else
+    elseif ENVIRON == 1
         %WET RUNWAY friction for longitudal braking force 
         mu_Bmax = (0.91 - 0.001*p)*(1 + (v*1.94384)*(-0.0052));
         mu_Beff = mu_Bmax*0.94 - 0.03; 
         mu_skid = (23.2 - 0.031*p)/(26.5 + v*1.94384);
         mu_PSImax = 0.64 * mu_Bmax + 0.15*(mu_Bmax)^2;
         mu_PSIlim = sqrt(1-((mu_Beff/mu_Bmax)*Kb)^2) * mu_Bmax;
+    else
+        %ICE RUNWAY friction for longitudal braking force 
+        mu_Bmax = 0.049-0.00029*(v*1.94384);
+        mu_Beff = mu_Bmax*0.8; 
+        mu_skid = mu_Bmax*(0.8 - 0.0004*v*1.94384);
+        mu_PSImax = 0.64 * mu_Bmax + 0.15*(mu_Bmax)^2;
+        mu_PSIlim = sqrt(1-((mu_Beff/mu_Bmax)*Kb)^2) * mu_Bmax;       
     end
 
 

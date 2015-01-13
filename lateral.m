@@ -14,6 +14,7 @@ pr = 210;   %[psi] 220 web
 %constants
 DRY = 0;
 WET = 1;
+ICE = 2;
 
 % x==0.2 at rated load
 xxx = Fz / (p * diam*39.3701 * sqrt(width*39.3701*diam*39.3701));
@@ -23,31 +24,34 @@ close all;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %braking coeff in various ENVIRON and speed
-Fy = zeros(301,1);
-Fy1 = zeros(301,1);
-Fy2 = zeros(301,1);
-Fy3 = zeros(301,1);
-Fy4 = zeros(301,1);
+Fy = zeros(61,1);
+Fy1 = zeros(61,1);
+Fy11 = zeros(61,1);
+Fy2 = zeros(61,1);
+Fy3 = zeros(61,1);
+Fy4 = zeros(61,1);
 
-velo = 0:0.1:30;
+velo = 0:0.5:30;
 
-for i = 1:301
+for i = 1:61
     Fy(i)  = braking_friction(DRY,p,velo(i));
     Fy1(i)  = braking_friction(WET,p,velo(i));
+    Fy11(i)  = braking_friction(ICE,p,velo(i));
     Fy2(i)  = braking_friction(DRY,0.8*p,velo(i));
     Fy3(i)  = braking_friction(WET,0.8*p,velo(i));
-    Fy4(i)  = braking_friction(DRY,1.2*p,velo(i));
+    Fy4(i)  = braking_friction(ICE,0.8*p,velo(i));
 
 end
 
 figure();
-plot(velo, Fy, 'b-', velo, Fy1, 'bo', velo, Fy2, 'r-', velo, Fy3, 'ro', velo, Fy4, 'g-');
-legend('nominal DRY','nominal WET','0.8p DRY','0.8p WET','1.2p DRY');
+set(gca,'FontSize',25,'fontWeight','bold');
+%set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
+plot(velo, Fy, 'b-', velo, Fy1, 'r-', velo, Fy11, 'g-', velo, Fy2, 'bo', velo, Fy3, 'ro');
+legend('nominal DRY','nominal WET', 'nominal ICE', '0.8p DRY','0.8p WET','Location','southeast');
 xlabel('Velocity [m/s]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
 title('Effective braking friction coefficient vs. speed');
 
-return;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -86,25 +90,28 @@ wFy = zeros(217,1);
 wFy1 = zeros(217,1);
 wFy2 = zeros(217,1);
 wFy3 = zeros(217,1);
+wFy33 = zeros(217,1);
 wFy4 = zeros(217,1);
 walpha = -0.08:0.005:1;
 
 for i = 1:217
     wFy(i) = lateral_friction(DRY,walpha(i),Fz,p,pr,diam,width,v,Kb);
     wFy1(i) = lateral_friction(WET,walpha(i),Fz,p,pr,diam,width,v,Kb);
-    wFy2(i) = lateral_friction(DRY,walpha(i),1.2*Fz,p,pr,diam,width,v,Kb);
+    wFy2(i) = lateral_friction(ICE,walpha(i),Fz,p,pr,diam,width,v,Kb);
     wFy3(i) = lateral_friction(WET,walpha(i),1.2*Fz,p,pr,diam,width,v,Kb);
+    wFy33(i) = lateral_friction(DRY,walpha(i),1.2*Fz,p,pr,diam,width,v,Kb);
 end
 
 walpha = walpha.*57.2957795;
 figure();
 set(gca,'FontSize',30,'fontWeight','bold');
 set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
-plot(walpha,wFy,'-',walpha,wFy1,'o',walpha,wFy2,'-',walpha,wFy3,'go');
-legend('nominal dry','nominal wet','1.2Fz dry','1.2Fz wet');
+plot(walpha,wFy,'b-',walpha,wFy1,'r-',walpha,wFy2,'g-',walpha,wFy3,'ro',walpha,wFy33,'bo');
+legend('nominal DRY','nominal WET','nominal ICE','1.2Fz WET', '1.2Fz DRY');
 xlabel('Tire angle [deg]') % x-axis label
 ylabel('friction coeff.') % y-axis label
-title(sprintf('Lateral friction coefficient in different environ. conditions, v=%d m/s, Fz=%d kN and Kb=%f',v, Fz/1000,Kb));
+title(sprintf('Lateral friction coefficient in different environ. conditions, v=%d m/s, Fz=%d kN and Kb=%.1f',v, Fz/1000,Kb));
+
 
 %ENGINE MODEL
 % figure();
@@ -120,14 +127,14 @@ title(sprintf('Lateral friction coefficient in different environ. conditions, v=
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % %DRY LATERAL FORCE COEFF plot vs. speed
-vFy = zeros(101,1);
-vFy1 = zeros(101,1);
-vFy2 = zeros(101,1);
-vFy3 = zeros(101,1);
-vFy4 = zeros(101,1);
+vFy = zeros(61,1);
+vFy1 = zeros(61,1);
+vFy2 = zeros(61,1);
+vFy3 = zeros(61,1);
+vFy4 = zeros(61,1);
 aalpha = 20*0.01745;
-velo = 0:1:100;
-for i = 1:101
+velo = 0:0.5:30;
+for i = 1:61
     vFy(i) = lateral_friction(DRY,aalpha,Fz,p,pr,diam,width,velo(i),Kb);
     vFy1(i) = lateral_friction(DRY,aalpha,0.8*Fz,p,pr,diam,width,velo(i),Kb);
     vFy2(i) = lateral_friction(DRY,aalpha,1.2*Fz,p,pr,diam,width,velo(i),Kb);
@@ -147,25 +154,25 @@ title(sprintf('Lateral friction coefficient vs. velocity, PSI = %.1f deg, Fz=%d 
 
 
 %DRY/WET LATERAL FORCE COEFF plot vs. speed
-wFy = zeros(101,1);
-wFy1 = zeros(101,1);
-wFy2 = zeros(101,1);
-wFy3 = zeros(101,1);
-wFy4 = zeros(101,1);
+wFy = zeros(61,1);
+wFy1 = zeros(61,1);
+wFy2 = zeros(61,1);
+wFy3 = zeros(61,1);
+wFy4 = zeros(61,1);
 walpha = 20*0.01745;
-v_i = 0:1:100;
-for i = 1:101
+v_i = 0:0.5:30;
+for i = 1:61
     wFy(i) = lateral_friction(DRY,walpha,Fz,p,pr,diam,width,v_i(i),Kb);
     wFy1(i) = lateral_friction(WET,walpha,Fz,p,pr,diam,width,v_i(i),Kb);
-    wFy2(i) = lateral_friction(DRY,walpha,1.2*Fz,p,pr,diam,width,v_i(i),Kb);
-    wFy3(i) = lateral_friction(WET,walpha,1.2*Fz,p,pr,diam,width,v_i(i),Kb);
+    wFy2(i) = lateral_friction(ICE,walpha,Fz,p,pr,diam,width,v_i(i),Kb);
+    wFy3(i) = lateral_friction(DRY,walpha,1.2*Fz,p,pr,diam,width,v_i(i),Kb);
 end
 
 figure();
 set(gca,'FontSize',30,'fontWeight','bold');
 set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
-plot(v_i,wFy,'-',v_i,wFy1,'o',v_i,wFy2,'-',v_i,wFy3,'go');
-legend('nominal dry','nominal wet','1.2Fz dry','1.2Fz wet');
+plot(v_i,wFy,'b-',v_i,wFy1,'r-',v_i,wFy2,'g-',v_i,wFy3,'bo');
+legend('nominal DRY','nominal WET','nominal ICE','1.2Fz DRY');
 xlabel('Speed [m/s]') % x-axis label
 ylabel('friction coeff.') % y-axis label
 alphaDeg = walpha/0.01745;
@@ -253,6 +260,8 @@ Fy2 = zeros(217,1);
 Fy3 = zeros(217,1);
 Fy4 = zeros(217,1);
 Fy5 = zeros(217,1);
+Fy44 = zeros(217,1);
+Fy55 = zeros(217,1);
 
 walpha = -0.08:0.005:1;
 
@@ -263,14 +272,16 @@ for i = 1:217
     Fy3(i)  = lateral_friction(DRY,walpha(i),Fz,p,pr,diam,width,v,1);
     Fy4(i)  = lateral_friction(WET,walpha(i),Fz,p,pr,diam,width,v,0);
     Fy5(i)  = lateral_friction(WET,walpha(i),Fz,p,pr,diam,width,v,1);
+    Fy44(i)  = lateral_friction(ICE,walpha(i),Fz,p,pr,diam,width,v,0);
+    Fy55(i)  = lateral_friction(ICE,walpha(i),Fz,p,pr,diam,width,v,1);
 end
 
 figure();
 set(gca,'FontSize',30,'fontWeight','bold');
 set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
 walpha = walpha./0.01745;
-plot(walpha,Fy,'b',walpha,Fy1,'g',walpha,Fy2,'r',walpha,Fy3,'k',walpha,Fy4,'ob',walpha,Fy5,'ok');
-legend('Kb = 0','Kb = 0.3','Kb = 0.6','Kb = 1', 'Kb = 0 WET', 'Kb = 1 WET');
+plot(walpha,Fy,'b',walpha,Fy1,'g',walpha,Fy2,'r',walpha,Fy3,'k',walpha,Fy4,'ob',walpha,Fy5,'ok',walpha,Fy44,'xb',walpha,Fy55,'xk');
+legend('Kb = 0','Kb = 0.3','Kb = 0.6','Kb = 1', 'Kb = 0 WET', 'Kb = 1 WET', 'Kb = 0 ICE', 'Kb = 1 ICE');
 xlabel('yaw angle [deg]') % x-axis label
 ylabel('friction coeff.') % y-axis label
 title(sprintf('Lateral friction coefficient when braking, v=%d ms, Fz=%d kN',v, Fz/1000));
