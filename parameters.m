@@ -12,8 +12,8 @@ par.heading_init = pi/2; %rad
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
-par.x_target = 0; %m
-par.y_target = 1000; %m
+par.x_target = 250; %m
+par.y_target = -1200; %m
 
 %Max 2-engine thrust [N]
 par.max_thrust = 2*111205;
@@ -77,8 +77,7 @@ par.width = 0.4318; %m [17 ins]
 %environment settings
 environ.dry = 1;
 environ.wet = 2;
-environ.snow = 3;
-environ.ice = 4;
+environ.ice = 3;
 par.environ = environ.dry;
 
 %Environment characteristics
