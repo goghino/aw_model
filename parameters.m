@@ -14,6 +14,8 @@ par.heading_init = pi/2; %rad
 par.v_target = 5; %m/s
 par.x_target = 150; %m
 par.y_target = -200; %m
+par.targets = [10 20 30 40 5];
+par.targets_len = size(par.targets);
 
 %environment settings
 environ.dry = 1;
