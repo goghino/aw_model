@@ -177,12 +177,10 @@ elseif strcmp(selector,'A-10')
 elseif strcmp(selector,'gripen')
     load 3d\gripen;
     V=[-V(:,1) -V(:,2) V(:,3)];
-
     V(:,1)=V(:,1)-round(sum(V(:,1))/size(V,1));
     V(:,2)=V(:,2)-round(sum(V(:,2))/size(V,1));
     V(:,3)=V(:,3)-round(sum(V(:,3))/size(V,1));
-else
-    
+else    
     try
     eval(['load ' selector ';']);
     V(:,1)=V(:,1)-round(sum(V(:,1))/size(V,1));
@@ -194,7 +192,6 @@ else
     load 3d\gripen;
     V=[V(:,3) V(:,1) V(:,2)];
     end
-
 end
 correction=max(abs(V(:,1)));
 V=V./(scale_factor*correction);
@@ -220,7 +217,8 @@ MAX=(ii-resto);
 for i=1:step:(ii-resto)
 
     clf;
-    %create offset between data limits and plot edges
+    %create offset between data limit values and figure edges to view whole
+    %area and whole airplane when it reaches these limit values
     offset=30;
     plot3(min(x)-offset,min(y)-offset,0,'black'); hold on;
     plot3(max(x)+offset,max(y)+offset,0,'black'); hold on;
@@ -249,8 +247,8 @@ for i=1:step:(ii-resto)
     X0=repmat(rif,size(Vnew,1),1);
     Vnew=Vnew+X0;
     p=patch('faces', F, 'vertices' ,Vnew);
-    set(p, 'facec', [1 0 0]);          
-    set(p, 'EdgeColor','none'); 
+    set(p, 'facec', [1 0 0]); %face color         
+    set(p, 'EdgeColor','none'); %edge color
 
     view(theView);
     axis equal;
