@@ -15,11 +15,23 @@ par.v_target = 5; %m/s
 par.x_target = 250; %m
 par.y_target = -1200; %m
 
+%environment settings
+environ.dry = 1;
+environ.wet = 2;
+environ.ice = 3;
+par.environ = environ.dry;
+
 %Max 2-engine thrust [N]
 par.max_thrust = 2*111205;
 
 %Max steering angle
 par.max_delta = 1.22; %rad
+
+% tire pressure [psi]
+par.p_rated = 210; %http://www.b737.org.uk/techspecsdetailed.htm
+par.p = 140;    %[psi]
+par.diam = 1.2446;  %m [49 ins]
+par.width = 0.4318; %m [17 ins]
 
 %General Aircraft Weight [kg]
 par.weight = 45420;
@@ -67,18 +79,6 @@ par.c1_RL = 5.11 * 10^(-1);
 par.c2_RL_alpha = 1.34 * 10^(-10);
 par.c1_RL_alpha = 1.06*10^(-5);
 par.c0_RL_alpha = 6.72;
-
-% tire pressure [psi]
-par.p_rated = 210; %http://www.b737.org.uk/techspecsdetailed.htm
-par.p = 140;    %[psi]
-par.diam = 1.2446;  %m [49 ins]
-par.width = 0.4318; %m [17 ins]
-
-%environment settings
-environ.dry = 1;
-environ.wet = 2;
-environ.ice = 3;
-par.environ = environ.dry;
 
 %Environment characteristics
 %http://en.wikipedia.org/wiki/Rolling_resistance#Rolling_resistance_coefficient_examples
