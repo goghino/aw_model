@@ -1,4 +1,4 @@
-function trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,selector,varargin);
+function trajectory3(x,y,z,pitch,roll,yaw,targets,scale_factor,step,selector,varargin);
 
 
 
@@ -15,12 +15,14 @@ function trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,selector,varargin);
 %   19/01/2015
 %   xkardo00@stud.fit.vutbr.cz
 %   *******************************
-%   function trajectory3(x,y,z,pitch,roll,yaw,scale_factor,step,[selector,SoR])
+%   function trajectory3(x,y,z,pitch,roll,yaw,targets,scale_factor,step,[selector,SoR])
 %   
 %
 %   x,y,z               center trajectory (vector)    [m]
 %   
 %   pitch,roll,yaw      euler's angles                [rad]
+%
+%   targets             array of X,Y coordinates of target points
 %   
 %   scale_factor        normalization factor          [scalar]
 %                              (related to body aircraft dimension)
@@ -87,16 +89,16 @@ if step<1
 
 end
 
-if nargin==10
+if nargin==11
     
     theView=cell2mat(varargin(1));
 
 end
-if nargin>10
+if nargin>11
     disp('Too many inputs arguments');
     return
 end
-if nargin<10
+if nargin<11
 
     %theView=[82.50 2];
     theView=[0 90];
@@ -225,7 +227,11 @@ for i=1:step:(ii-resto)
     
     %draw already covered trajectory
     plot3(x(1:i),y(1:i),z(1:i),'red');
-
+    hold on;
+    
+    %draw target points
+    plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'ko'); hold on;
+    
     grid on;
     hold on;
     light;
