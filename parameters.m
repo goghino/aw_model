@@ -12,10 +12,11 @@ par.heading_init = pi/2; %rad
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
-par.x_target = 150; %m
-par.y_target = -200; %m
-par.targets = [10 20 30 40 5];
-par.targets_len = size(par.targets);
+
+par.x_targets = [0 30 90 150  180 300]; %m
+par.y_targets = [-30 -90 -120 -120 -150 300]; %m
+%distance to target when model switch next targen
+par.switch_distance = 1.0; %m
 
 %environment settings
 environ.dry = 1;
@@ -94,9 +95,6 @@ par.muR_boeing = 0.02; %Boeing, J.Rankin
 %velocity below which model will be discontinually reset to zero state
 par.min_velo = 0.0005; %m/s
 par.min_force = par.g*par.weight*par.muR_boeing; %N
-
-%distance to target when model switch next targen
-par.switch_distance = 5.0; %m
 
 %tspan=0:0.1:100;
 %sim('aero_ground_model',tspan);
