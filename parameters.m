@@ -8,15 +8,15 @@ par.kbl = 0.0;
 
 par.x_init = 0; %m
 par.y_init = 0; %m
-par.heading_init = pi/2; %rad
+par.heading_init = pi/2; %rad, inverse unitary circle convenction
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
 
 par.x_targets = [0 30 90 150  180 200]; %m
-par.y_targets = [-30 -90 -120 -120 -150 100]; %m
-%par.x_targets = [0 200 50]; %m
-%par.y_targets = [-200 -200 50]; %m
+par.y_targets = [-30 -90 -120 -120 -150 -200]; %m
+%par.x_targets = [20 -20 20 -20 20 -20 20 -20 20 -20]; %m
+%par.y_targets = [20 60 100 140 180 220 260 300 340 380]; %m
 
 %distance to target when model switch next target
 par.switch_distance = 4; %m
