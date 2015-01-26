@@ -13,10 +13,10 @@ par.heading_init = pi/2; %rad
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
 
-%par.x_targets = [0 30 90 150  180 300]; %m
-%par.y_targets = [-30 -90 -120 -120 -150 300]; %m
-par.x_targets = [0 200 50]; %m
-par.y_targets = [-200 -200 50]; %m
+par.x_targets = [0 30 90 150  180 200]; %m
+par.y_targets = [-30 -90 -120 -120 -150 100]; %m
+%par.x_targets = [0 200 50]; %m
+%par.y_targets = [-200 -200 50]; %m
 
 %distance to target when model switch next target
 par.switch_distance = 4; %m
