@@ -1,5 +1,5 @@
 %INITIAL CONDITIONS FOR THE MODEL
-par.vx_init = 5; %m/s
+par.vx_init = 0; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
