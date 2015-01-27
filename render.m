@@ -15,5 +15,5 @@ yaw = resample(PSI,time);
 targets=[par.x_targets; par.y_targets];
 
 cd trajectory3;
-trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,scale,step,'747')
+trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,scale,step,'747', [45 30])
 cd ..;
