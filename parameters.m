@@ -13,8 +13,8 @@ par.heading_init = pi/2; %rad, inverse unitary circle convenction
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
 
-par.x_targets = [0 30 90 150  180 200]; %m
-par.y_targets = [-30 -90 -120 -120 -150 -200]; %m
+par.x_targets = [0 30 90 150  180 200 200]; %m
+par.y_targets = [-30 -90 -120 -120 -150 -200 250]; %m
 %par.x_targets = [20 -20 20 -20 20 -20 20 -20 20 -20]; %m
 %par.y_targets = [20 60 100 140 180 220 260 300 340 380]; %m
 
@@ -99,35 +99,34 @@ par.muR_boeing = 0.02; %Boeing, J.Rankin
 par.min_velo = 0.0005; %m/s
 par.min_force = par.g*par.weight*par.muR_boeing; %N
 
-%tspan=0:0.1:100;
-%sim('aero_ground_model',tspan);
-%plot(sn(:,1),sn(:,2), 'k-', sl(:,1),sl(:,2), 'b-', sr(:,1),sr(:,2), 'r-');
-
 %---------------------------------
 %Solver for weight decomposition
 %----------------------------------
-Kb_l = 0;
-Kb_r = 0;
-mu_Beff = 0.6;
-K = (Kb_l + Kb_r)*mu_Beff;
-A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR-K*par.l_zR)];
-B = [par.weight*par.g ; -par.l_zT*13000];
-linsolve(A,B);
+% Kb_l = 0;
+% Kb_r = 0;
+% mu_Beff = 0.6;
+% K = (Kb_l + Kb_r)*mu_Beff;
+% A = [1 2; (par.l_xN-par.muR_boeing*par.l_zN) 2*(-par.l_xR-par.muR_boeing*par.l_zR-K*par.l_zR)];
+% B = [par.weight*par.g ; -par.l_zT*13000];
+% linsolve(A,B);
 
 %------------------------
 %analytical turn radius
 %------------------------
-L = par.l_xN + par.l_xR;
-steer = 0.7;
-
-R_dash = L/sin(steer);
-R_dash_dash = R_dash * cos(steer);
-R = sqrt(par.l_xR^2 + R_dash_dash^2);
+% L = par.l_xN + par.l_xR;
+% steer = 0.7;
+% 
+% R_dash = L/sin(steer);
+% R_dash_dash = R_dash * cos(steer);
+% R = sqrt(par.l_xR^2 + R_dash_dash^2);
 
 %------------------------
 %Trajectory visualization
 %------------------------
-%plot(X.Data, Y.Data, 'r-');
-%set_param('aero_ground_model', 'AlgebraicLoopSolver', 'LineSearch');
+% tspan=0:0.1:100;
+% sim('aero_ground_model',tspan);
+% plot(X.Data, Y.Data, 'r-');
+% set_param('aero_ground_model', 'AlgebraicLoopSolver', 'LineSearch');
+% set_param('aero_ground_model','AlgebraicLoopSolver','TrustRegion');
 
 disp('MODEL INITIALIZED...');
