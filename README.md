@@ -35,3 +35,5 @@ When simulation is finished visualize aircraft motion:
 ```
 >> render
 ```
+
+![alt tag](https://raw.github.com/goghino/aw_model/master/trajectory.PNG)
