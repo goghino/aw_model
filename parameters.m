@@ -20,6 +20,7 @@ par.y_targets = [-30 -90 -120 -120 -150 -200 0]; %m
 
 %distance to target when model switch next target
 par.switch_distance = 4; %m
+par.count_targets = length(par.x_targets);
 
 %environment settings
 environ.dry = 1;
