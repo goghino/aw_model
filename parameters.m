@@ -14,7 +14,7 @@ par.heading_init = pi/2; %rad, inverse unitary circle convenction
 par.v_target = 5; %m/s
 
 par.x_targets = [0 30 90 150  180 200 200]; %m
-par.y_targets = [-30 -90 -120 -120 -150 -200 250]; %m
+par.y_targets = [-30 -90 -120 -120 -150 -200 0]; %m
 %par.x_targets = [20 -20 20 -20 20 -20 20 -20 20 -20]; %m
 %par.y_targets = [20 60 100 140 180 220 260 300 340 380]; %m
 
