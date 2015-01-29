@@ -18,3 +18,5 @@ cd trajectory3;
 theView=[-45 30];
 trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,scale,step,'747',theView)
 cd ..;
+
+disp('DONE...');

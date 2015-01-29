@@ -3,9 +3,6 @@ par.vx_init = 0; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
-par.kbr = 0.0;
-par.kbl = 0.0;
-
 par.x_init = 0; %m
 par.y_init = 0; %m
 par.heading_init = pi/2; %rad, inverse unitary circle convenction
@@ -13,20 +10,26 @@ par.heading_init = pi/2; %rad, inverse unitary circle convenction
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
 
+%par.x_targets = [0 10 20 30 30 30 30 90];
+%par.y_targets = [0 -10 -20 -30 -40 -50 -60 -60];
+
 par.x_targets = [0 30 90 150  180 200 200]; %m
 par.y_targets = [-30 -90 -120 -120 -150 -200 0]; %m
+
 %par.x_targets = [20 -20 20 -20 20 -20 20 -20 20 -20]; %m
 %par.y_targets = [20 60 100 140 180 220 260 300 340 380]; %m
-
-%distance to target when model switch next target
-par.switch_distance = 4; %m
-par.count_targets = length(par.x_targets);
 
 %environment settings
 environ.dry = 1;
 environ.wet = 2;
 environ.ice = 3;
-par.environ = environ.dry;
+par.environ = environ.dry; 
+
+%==========================================================================
+
+%distance to target when model switch next target
+par.switch_distance = 4; %m
+par.count_targets = length(par.x_targets);
 
 %Max 2-engine thrust [N]
 par.max_thrust = 2*111205;
@@ -100,6 +103,7 @@ par.muR_boeing = 0.02; %Boeing, J.Rankin
 par.min_velo = 0.0005; %m/s
 par.min_force = par.g*par.weight*par.muR_boeing; %N
 
+%==========================================================================
 %---------------------------------
 %Solver for weight decomposition
 %----------------------------------
