@@ -3,21 +3,20 @@ par.vx_init = 0; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
-par.x_init = 0; %m
-par.y_init = 0; %m
-par.heading_init = pi/2; %rad, inverse unitary circle convenction
+par.x_init = txwyUTM_x(1); %m UTM Lon. format
+par.y_init = txwyUTM_y(1); %m UTM Lat. format
+%heading,zero=EAST, positive to pilot right hand (inverse unitary circle)
+par.heading_init = atan2(txwyUTM_y(2)-txwyUTM_y(1), txwyUTM_x(2)-txwyUTM_x(1));%rad
+%transform from -pi,pi to 0-2pi and inverse unitary circle direction
+if(par.heading_init<0)
+    par.heading_init = abs(par.heading_init);
+else
+    par.heading_init = 2*pi - par.heading_init;
+end
+
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
-
-%par.x_targets = [0 10 20 30 30 30 30 90];
-%par.y_targets = [0 -10 -20 -30 -40 -50 -60 -60];
-
-par.x_targets = [0 30 90 150  180 200 200]; %m
-par.y_targets = [-30 -90 -120 -120 -150 -200 0]; %m
-
-%par.x_targets = [20 -20 20 -20 20 -20 20 -20 20 -20]; %m
-%par.y_targets = [20 60 100 140 180 220 260 300 340 380]; %m
 
 %environment settings
 environ.dry = 1;
@@ -28,8 +27,8 @@ par.environ = environ.dry;
 %==========================================================================
 
 %distance to target when model switch next target
-par.switch_distance = 4; %m
-par.count_targets = length(par.x_targets);
+par.switch_distance = 2; %m
+par.count_targets = length(txwyUTM_x);
 
 %Max 2-engine thrust [N]
 par.max_thrust = 2*111205;

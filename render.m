@@ -12,10 +12,11 @@ roll = zeros(len(1),1);
 pitch = zeros(len(1),1);
 yaw = resample(PSI,time);
 
-targets=[par.x_targets; par.y_targets];
+targets=[txwyUTM_x; txwyUTM_y];
 
 cd trajectory3;
-theView=[-45 30];
+%theView=[-45 30];
+theView=[0 90];
 trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,scale,step,'747',theView)
 cd ..;
 
