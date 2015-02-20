@@ -12,14 +12,14 @@ for i=1:size(wpt)
 end
 wmmarker(wpt, 'FeatureName', wpt_names, 'OverlayName', 'Waypoints');
 
-%convert taxiway from WGS to UTM coordinates
-%   Lat. - corresponds to Y axis
-%   Lon. - corresponds to X axis
+%convert taxiway from WGS to UTM(NED) coordinates
+%   Lat. - corresponds to X axis
+%   Lon. - corresponds to Y axis
 txwyUTM_x=zeros(size(txwy)); %corresponds to longitude coords
 txwyUTM_y=zeros(size(txwy)); %corresponds to latitude coords
 zone=cell(size(txwy));
 for i=1:size(txwy)
-    [txwyUTM_y(i),txwyUTM_x(i),zone{i}] = wgs2utm(txwy(i).Latitude, txwy(i).Longitude);
+    [txwyUTM_x(i),txwyUTM_y(i),zone{i}] = wgs2utm(txwy(i).Latitude, txwy(i).Longitude);
 end
 
 %return;
@@ -38,7 +38,7 @@ y = resample(Y,time);
 Lat = zeros(size(x.Data));
 Lon = zeros(size(x.Data));
 for i=1:size(x.Data)
-    [Lat(i),Lon(i)] = utm2deg(y.Data(i), x.Data(i), zone{1});
+    [Lat(i),Lon(i)] = utm2deg(x.Data(i), y.Data(i), zone{1});
 end
 wmline(Lat, Lon, 'OverlayName', 'Aero', 'Color', 'red');
 

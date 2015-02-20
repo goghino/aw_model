@@ -221,9 +221,9 @@ for i=1:step:(ii-resto)
     clf;
     %create offset between data limit values and figure edges to view whole
     %area and whole airplane when it reaches these limit values
-    offset=30;
-    plot3(min(x)-offset,min(y)-offset,0,'black'); hold on;
-    plot3(max(x)+offset,max(y)+offset,0,'black'); hold on;
+    offset=50;
+    plot3(min(x)-offset,min(y)-offset,x,'red'); hold on;
+    plot3(max(x)+offset,max(y)+offset,x,'red'); hold on;
     
     %draw already covered trajectory
     plot3(x(1:i),y(1:i),z(1:i),'red');
