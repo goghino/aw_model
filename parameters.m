@@ -35,6 +35,8 @@ par.max_thrust = 2*111205;
 
 %Max steering angle
 par.max_delta = 1.22; %rad
+%steering angle when diff. braking starts
+par.delta_lim = 0.8; %rad
 
 % tire pressure [psi]
 par.p_rated = 210; %http://www.b737.org.uk/techspecsdetailed.htm

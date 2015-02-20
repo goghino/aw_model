@@ -1,11 +1,16 @@
 %load gpx data of the airport taxiway markers
-txwy = gpxread('gpx\test', 'FeatureType', 'track');
-wpt = gpxread('gpx\test');
+INPUT = 'gpx\txwy_brq';
+txwy = gpxread(INPUT, 'FeatureType', 'track');
+wpt = gpxread(INPUT);
 
 %open map and display route
 webmap('WorldTopographicMap')
 wmline(txwy, 'OverlayName', 'TXWY', 'Color', 'yellow');
-wmmarker(wpt, 'FeatureName', 'WPT', 'OverlayName', 'Waypoints');
+wpt_names = cell(size(wpt));
+for i=1:size(wpt)
+    wpt_names{i} = ['Waypoint ' num2str(i)];
+end
+wmmarker(wpt, 'FeatureName', wpt_names, 'OverlayName', 'Waypoints');
 
 %convert taxiway from WGS to UTM coordinates
 %   Lat. - corresponds to Y axis
@@ -22,11 +27,12 @@ end
 % -----------------------------
 %   HERE GOES THE SIMULATION
 %------------------------------
-%parameters;
-%sim('aero_ground_model');
+parameters;
+set_param('aero_ground_model','MaskedZcDiagnostic','none');
+sim('aero_ground_model');
 
 %transform airplane trajectory to WGS84 and display on map
-time = [0:0.333:100]; 
+time = [0:0.333:500]; 
 x = resample(X,time);
 y = resample(Y,time);
 Lat = zeros(size(x.Data));
