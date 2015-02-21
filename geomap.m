@@ -28,7 +28,7 @@ end
 %   HERE GOES THE SIMULATION
 %------------------------------
 parameters;
-set_param('aero_ground_model','MaskedZcDiagnostic','none');
+set_param('aero_ground_model','MaskedZcDiagnostic','warning');
 sim('aero_ground_model');
 
 

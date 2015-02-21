@@ -27,7 +27,7 @@ par.environ = environ.dry;
 %==========================================================================
 
 %distance to target when model switch next target
-par.switch_distance = 2; %m
+par.switch_distance = 4; %m
 par.count_targets = length(txwyUTM_x);
 
 %Max 2-engine thrust [N]
