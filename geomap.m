@@ -3,16 +3,22 @@
 %------------------------------
 INPUT = 'gpx\txwy_brq';
 txwy = gpxread(INPUT, 'FeatureType', 'track');
-wpt = gpxread(INPUT); %just markers of individual pts approximating txwy
 
 %open map and display route
 webmap('WorldTopographicMap')
 wmline(txwy, 'OverlayName', 'TXWY', 'Color', 'yellow');
+
+%markers of individual pts approximating txwy
+wpt = gpxread(INPUT);
 wpt_names = cell(size(wpt));
+radius = 4;
+az=[];
 for i=1:size(wpt)
-    wpt_names{i} = ['Waypoint ' num2str(i)];
+    wpt_names{i} = ['Waypoint ' num2str(i)]; 
+    [lat, lon] = scircle1(wpt(i).Latitude, wpt(i).Longitude, radius, az, wgs84Ellipsoid);
+    wmline(lat, lon, 'Color', 'red', 'OverlayName', wpt_names{i});
 end
-wmmarker(wpt, 'FeatureName', wpt_names, 'OverlayName', 'Waypoints');
+%wmmarker(wpt, 'FeatureName', wpt_names, 'OverlayName', 'Waypoints');
 
 %convert taxiway from WGS to UTM (e.g. NED) coordinates
 %   Lat. - corresponds to X axis
@@ -43,5 +49,5 @@ Lon = zeros(size(x.Data));
 for i=1:size(x.Data)
     [Lat(i),Lon(i)] = utm2deg(x.Data(i), y.Data(i), zone{1});
 end
-wmline(Lat, Lon, 'OverlayName', 'Aero', 'Color', 'red');
+wmline(Lat, Lon, 'OverlayName', 'Aero', 'Color', 'blue');
 
