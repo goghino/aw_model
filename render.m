@@ -1,12 +1,13 @@
 %adjust size of rendered model
-scale = 0.02;
+scale = 0.03;
 step = 1;
 
 %Resampling time data to bigger time-step and adding offset to UTM
 %coordinates, so that we don't work with huge numbers but rather small
 %distances, starting position of aircraft will allways have coordinates [0 0]
 %Resampling speed is 10x, resaple with step 0.033 to get realtime
-time = [0:0.333:500];
+end_time = X.Time(length(X.Time));
+time = [0:0.333:end_time];
 x = resample(X,time);
 OFFSET_X = x.Data(1);
 x.Data = x.Data - OFFSET_X;

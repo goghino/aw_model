@@ -41,7 +41,8 @@ sim('aero_ground_model');
 % -----------------------------
 % Transform airplane trajectory to WGS84 and display on map
 %------------------------------
-time = [0:0.333:500]; 
+end_time = X.Time(length(X.Time));
+time = [0:0.333:end_time]; 
 x = resample(X,time);
 y = resample(Y,time);
 Lat = zeros(size(x.Data));
