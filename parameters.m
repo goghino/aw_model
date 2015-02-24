@@ -26,7 +26,7 @@ par.environ = environ.dry;
 
 %==========================================================================
 
-%distance to target when model switch next target
+%distance to target when model switches to next target
 par.switch_distance = 4; %m
 par.count_targets = length(txwyUTM_x);
 

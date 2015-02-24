@@ -8,17 +8,15 @@ txwy = gpxread(INPUT, 'FeatureType', 'track');
 webmap('WorldTopographicMap')
 wmline(txwy, 'OverlayName', 'TXWY', 'Color', 'yellow');
 
-%markers of individual pts approximating txwy
-wpt = gpxread(INPUT);
-wpt_names = cell(size(wpt));
+%markers of individual pts approximating txwy with radius R=par.switch_distance
+wpt_names = cell(size(txwy));
 radius = 4;
 az=[];
-for i=1:size(wpt)
+for i=1:size(txwy)
     wpt_names{i} = ['Waypoint ' num2str(i)]; 
-    [lat, lon] = scircle1(wpt(i).Latitude, wpt(i).Longitude, radius, az, wgs84Ellipsoid);
+    [lat, lon] = scircle1(txwy(i).Latitude, txwy(i).Longitude, radius, az, wgs84Ellipsoid);
     wmline(lat, lon, 'Color', 'red', 'OverlayName', wpt_names{i});
 end
-%wmmarker(wpt, 'FeatureName', wpt_names, 'OverlayName', 'Waypoints');
 
 %convert taxiway from WGS to UTM (e.g. NED) coordinates
 %   Lat. - corresponds to X axis
@@ -34,8 +32,8 @@ end
 %   HERE GOES THE SIMULATION
 %------------------------------
 parameters;
-set_param('aero_ground_model','MaskedZcDiagnostic','warning');
-sim('aero_ground_model');
+%set_param('aero_ground_model','MaskedZcDiagnostic','warning');
+simOut = sim('aero_ground_model');
 
 
 % -----------------------------
