@@ -101,7 +101,7 @@ par.muR_snow = 0.013; %Truck tire on hard-packed snow
 par.muR_boeing = 0.02; %Boeing, J.Rankin
 
 %velocity below which model will be discontinually reset to zero state
-par.min_velo = 0.0005; %m/s
+par.min_velo = 0.03; %m/s
 par.min_force = par.g*par.weight*par.muR_boeing; %N
 
 %==========================================================================
