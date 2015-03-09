@@ -1,4 +1,4 @@
-function trajectory3(x,y,z,pitch,roll,yaw,targets,scale_factor,step,selector,varargin);
+function trajectory3(x,y,z,pitch,roll,yaw,targets,wheels,scale_factor,step,selector,varargin);
 
 
 
@@ -23,6 +23,9 @@ function trajectory3(x,y,z,pitch,roll,yaw,targets,scale_factor,step,selector,var
 %   pitch,roll,yaw      euler's angles                [rad]
 %
 %   targets             array of X,Y coordinates of target points
+%
+%   wheels              coordinates of wheels (N,R,L)   [m]
+%                       format is: [xn yn xr yr xl yl]
 %   
 %   scale_factor        normalization factor          [scalar]
 %                              (related to body aircraft dimension)
@@ -58,7 +61,7 @@ function trajectory3(x,y,z,pitch,roll,yaw,targets,scale_factor,step,selector,var
 %                       positive down; the moment around Z body is positive
 %                       roll clockwise as viewed from above.
 
-if nargin<9
+if nargin<10
     disp('  Error:');
 
     disp('      Error: Invalid Number Inputs!');
@@ -89,12 +92,12 @@ if step<1
 
 end
 
-if nargin==11
+if nargin==12
     
     theView=cell2mat(varargin(1));
 
 end
-if nargin>11
+if nargin>12
     disp('Too many inputs arguments');
     return
 end
@@ -226,7 +229,10 @@ for i=1:step:(ii-resto)
     plot3(max(x)+offset,max(y)+offset,x,'red'); hold on;
     
     %draw already covered trajectory
-    plot3(x(1:i),y(1:i),z(1:i),'red');
+    plot3(x(1:i),y(1:i),z(1:i),'blue');
+    plot3(wheels(1:i,1),wheels(1:i,2),z(1:i),'black'); %Nose
+    plot3(wheels(1:i,3),wheels(1:i,4),z(1:i),'red'); %Right
+    plot3(wheels(1:i,5),wheels(1:i,6),z(1:i),'green'); %Left
     hold on;
     
     %draw target points

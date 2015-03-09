@@ -57,7 +57,7 @@ par.l_yT_R = 5.755;
 par.l_yT_L = par.l_yT_R;
 par.l_yL = 3.795;
 par.l_yR = par.l_yL;
-par.l_yN = 1;
+%par.l_yN = 1;
 
 par.l_xT = 0;
 par.l_xL = 1.450;
@@ -132,6 +132,7 @@ par.min_force = par.g*par.weight*par.muR_boeing; %N
 % tspan=0:0.1:100;
 % sim('aero_ground_model',tspan);
 % plot(X.Data, Y.Data, 'r-');
+% plot(X.Data, Y.Data, 'b-', XR.Data, YR.Data, 'r-',XL.Data, YL.Data, 'g-',XN.Data, YN.Data, 'k-');
 % set_param('aero_ground_model', 'AlgebraicLoopSolver', 'LineSearch');
 % set_param('aero_ground_model','AlgebraicLoopSolver','TrustRegion');
 
