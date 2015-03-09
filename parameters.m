@@ -1,10 +1,17 @@
+%load airplane parameters
+boeing_767_params;
+
+% Tracking method selection
+% Defines which aero's point is tracked: either NOSE or GC
+par.NOSE = 1;
+par.CG = 2;
+par.TRACKING = par.NOSE;
+
 %INITIAL CONDITIONS FOR THE MODEL
 par.vx_init = 0; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
-par.x_init = txwyUTM_x(1); %m UTM Lon. format
-par.y_init = txwyUTM_y(1); %m UTM Lat. format
 %heading,zero=EAST, positive to pilot right hand (inverse unitary circle)
 par.heading_init = atan2(txwyUTM_y(2)-txwyUTM_y(1), txwyUTM_x(2)-txwyUTM_x(1));%rad
 %transform from -pi,pi to 0-2pi and inverse unitary circle direction
@@ -14,6 +21,20 @@ else
     par.heading_init = 2*pi - par.heading_init;
 end
 
+%set starting position to first txwy waypoint
+if(par.TRACKING == par.CG)
+    par.x_init = txwyUTM_x(1); %m UTM Lon. format
+    par.y_init = txwyUTM_y(1); %m UTM Lat. format
+else
+    %transform l_xN vector from BFF to nav
+    x_nav = par.l_xN*cos(-par.heading_init);
+    y_nav = par.l_xN*sin(-par.heading_init);
+    
+    %compensate for l_xN vector so that nose wheel is at starting point,
+    %not CG
+    par.x_init = txwyUTM_x(1)-x_nav; %m UTM Lon. format
+    par.y_init = txwyUTM_y(1)-y_nav; %m UTM Lat. format
+end
 
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
@@ -24,85 +45,9 @@ environ.wet = 2;
 environ.ice = 3;
 par.environ = environ.dry; 
 
-%==========================================================================
-
 %distance to target when model switches to next target
 par.switch_distance = 4; %m
 par.count_targets = length(txwyUTM_x);
-
-%Max 2-engine thrust [N]
-par.max_thrust = 2*111205;
-
-%Max steering angle
-par.max_delta = 1.22; %rad
-%steering angle when diff. braking starts
-par.delta_lim = 0.8; %rad
-
-% tire pressure [psi]
-par.p_rated = 210; %http://www.b737.org.uk/techspecsdetailed.htm
-par.p = 140;    %[psi]
-par.diam = 1.2446;  %m [49 ins]
-par.width = 0.4318; %m [17 ins]
-
-%General Aircraft Weight [kg]
-par.weight = 45420;
-par.weight1 = 75000;
-par.g = 9.80665;
-
-%Aircraft inertia in Z-axis [kg*m^2]
-par.Inertia_z = 3335000;
-
-%Aircraft geometric model [m]
-par.l_yT_R = 5.755;
-par.l_yT_L = par.l_yT_R;
-par.l_yL = 3.795;
-par.l_yR = par.l_yL;
-%par.l_yN = 1;
-
-par.l_xT = 0;
-par.l_xL = 1.450;
-par.l_xR = par.l_xL;
-par.l_xN = 11.235;
-
-par.l_zT = 1.229;
-par.l_zL = 2.932;
-par.l_zR = par.l_zL;
-par.l_zN = 2.932;
-
-%Aircraft Aerodynamics
-par.rho = 1.225; %[kg/m^3]
-par.Sw = 122.4;  %[m^2]
-par.Cx = 0.0674; %no unit
-
-%Lateral Tire Friction polynom coeficients
-%nose tire
-par.c2_N = -3.53 * 10^(-6);
-par.c1_N = 8.83 * 10^(-1);
-
-par.c2_N_alpha = 3.52 * 10^(-9);
-par.c1_N_alpha = 2.8*10^(-5);
-par.c0_N_alpha = 13.8;
-
-%right/left wheel
-par.c2_RL = -7.39 * 10^(-7);
-par.c1_RL = 5.11 * 10^(-1);
-
-par.c2_RL_alpha = 1.34 * 10^(-10);
-par.c1_RL_alpha = 1.06*10^(-5);
-par.c0_RL_alpha = 6.72;
-
-%Environment characteristics
-%http://en.wikipedia.org/wiki/Rolling_resistance#Rolling_resistance_coefficient_examples
-%http://hpwizard.com/tire-friction-coefficient.html
-par.muR_dry = 0.008; %Truck tires on concrete
-par.muR_wet = 0.007; %Truck tires on wet concrete
-par.muR_ice = 0.011; %Truck tires on ice
-par.muR_snow = 0.013; %Truck tire on hard-packed snow
-par.muR_boeing = 0.02; %Boeing, J.Rankin
-
-%velocity below which model will be discontinually reset to zero state
-par.min_velo = 0.03; %m/s
-par.min_force = par.g*par.weight*par.muR_boeing; %N
 
 %==========================================================================
 %---------------------------------

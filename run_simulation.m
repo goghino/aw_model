@@ -1,7 +1,8 @@
 % -----------------------------
 % Load gpx data of the airport taxiway markers
 %------------------------------
-INPUT = 'gpx\test_snail_short';
+%INPUT = 'gpx\test_snail_short';
+INPUT = 'gpx\txwy_osr_U';
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
 %open map and display route
@@ -9,14 +10,14 @@ webmap('WorldTopographicMap')
 wmline(txwy, 'OverlayName', 'TXWY', 'Color', 'yellow');
 
 %markers of individual pts approximating txwy with radius R=par.switch_distance
-wpt_names = cell(size(txwy));
-radius = 4;
-az=[];
-for i=1:size(txwy)
-    wpt_names{i} = ['Waypoint ' num2str(i)]; 
-    [lat, lon] = scircle1(txwy(i).Latitude, txwy(i).Longitude, radius, az, wgs84Ellipsoid);
-    wmline(lat, lon, 'Color', 'red', 'OverlayName', wpt_names{i});
-end
+% wpt_names = cell(size(txwy));
+% radius = 4;
+% az=[];
+% for i=1:size(txwy)
+%     wpt_names{i} = ['Waypoint ' num2str(i)]; 
+%     [lat, lon] = scircle1(txwy(i).Latitude, txwy(i).Longitude, radius, az, wgs84Ellipsoid);
+%     wmline(lat, lon, 'Color', 'red', 'OverlayName', wpt_names{i});
+% end
 
 %convert taxiway from WGS to UTM (e.g. NED) coordinates
 %   Lat. - corresponds to X axis
