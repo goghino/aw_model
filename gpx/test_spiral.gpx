@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Endomondo.com" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd" xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata>
+    <author>
+      <name>Juraj Kardoš</name>
+      <email id="juraj2202" domain="gmail.com"/>
+    </author>
+    <link href="http://www.endomondo.com">
+      <text>Endomondo</text>
+    </link>
+    <time>2015-02-22T18:57:19Z</time>
+  </metadata>
+  <trk>
+    <name>test_snail</name>
+    <src>http://www.endomondo.com/</src>
+    <link href="https://www.endomondo.com/workouts/475990769/19533967">
+      <text>test_snail</text>
+    </link>
+    <type>SPINNING</type>
+    <trkseg>
+      <trkpt lat="49.69252" lon="18.11095">
+        <time>2015-02-22T18:00:00Z</time>
+      </trkpt>
+      <trkpt lat="49.69605" lon="18.11095">
+        <time>2015-02-22T19:01:16Z</time>
+      </trkpt>
+      <trkpt lat="49.69608" lon="18.11643">
+        <time>2015-02-22T20:02:48Z</time>
+      </trkpt>
+      <trkpt lat="49.69283" lon="18.11643">
+        <time>2015-02-22T20:59:12Z</time>
+      </trkpt>
+      <trkpt lat="49.69283" lon="18.11185">
+        <time>2015-02-22T21:50:38Z</time>
+      </trkpt>
+      <trkpt lat="49.69541" lon="18.11179">
+        <time>2015-02-22T22:35:25Z</time>
+      </trkpt>
+      <trkpt lat="49.6954" lon="18.11552">
+        <time>2015-02-22T23:17:18Z</time>
+      </trkpt>
+      <trkpt lat="49.6933" lon="18.11555">
+        <time>2015-02-22T23:53:45Z</time>
+      </trkpt>
+      <trkpt lat="49.6933" lon="18.11283">
+        <time>2015-02-23T00:24:17Z</time>
+      </trkpt>
+      <trkpt lat="49.69493" lon="18.11279">
+        <time>2015-02-23T00:52:35Z</time>
+      </trkpt>
+      <trkpt lat="49.69493" lon="18.11501">
+        <time>2015-02-23T01:17:31Z</time>
+      </trkpt>
+      <trkpt lat="49.69354" lon="18.11502">
+        <time>2015-02-23T01:41:38Z</time>
+      </trkpt>
+      <trkpt lat="49.69354" lon="18.11333">
+        <time>2015-02-23T02:00:37Z</time>
+      </trkpt>
+      <trkpt lat="49.69467" lon="18.11331">
+        <time>2015-02-23T02:20:14Z</time>
+      </trkpt>
+      <trkpt lat="49.69467" lon="18.11464">
+        <time>2015-02-23T02:35:10Z</time>
+      </trkpt>
+      <trkpt lat="49.6938" lon="18.11465">
+        <time>2015-02-23T02:50:16Z</time>
+      </trkpt>
+      <trkpt lat="49.6938" lon="18.11371">
+        <time>2015-02-23T03:00:49Z</time>
+      </trkpt>
+      <trkpt lat="49.6945" lon="18.1137">
+        <time>2015-02-23T03:12:58Z</time>
+      </trkpt>
+      <trkpt lat="49.6945" lon="18.11439">
+        <time>2015-02-23T03:20:43Z</time>
+      </trkpt>
+      <trkpt lat="49.694" lon="18.11439">
+        <time>2015-02-23T03:29:24Z</time>
+      </trkpt>
+      <trkpt lat="49.694" lon="18.11387">
+        <time>2015-02-23T03:35:14Z</time>
+      </trkpt>
+      <trkpt lat="49.69439" lon="18.11387">
+        <time>2015-02-23T03:42:00Z</time>
+      </trkpt>
+      <trkpt lat="49.69439" lon="18.11425">
+        <time>2015-02-23T03:46:16Z</time>
+      </trkpt>
+      <trkpt lat="49.69408" lon="18.11425">
+        <time>2015-02-23T03:51:39Z</time>
+      </trkpt>
+      <trkpt lat="49.69409" lon="18.11399">
+        <time>2015-02-23T03:54:34Z</time>
+      </trkpt>
+      <trkpt lat="49.69428" lon="18.11399">
+        <time>2015-02-23T03:57:52Z</time>
+      </trkpt>
+      <trkpt lat="49.69429" lon="18.11419">
+        <time>2015-02-23T04:00:07Z</time>
+      </trkpt>
+    </trkseg>
+  </trk>
+</gpx>
