@@ -74,7 +74,7 @@ Lon = zeros(size(xr.Data));
 for i=1:size(xr.Data)
     [Lat(i),Lon(i)] = utm2deg(xr.Data(i), yr.Data(i), zone{1});
 end
-wmline(Lat, Lon, 'OverlayName', 'Aero R', 'Color', 'green');
+wmline(Lat, Lon, 'OverlayName', 'Aero R', 'Color', 'red');
 
 %left wheel
 end_time = XL.Time(length(XL.Time));

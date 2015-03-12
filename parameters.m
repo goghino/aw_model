@@ -36,6 +36,11 @@ else
     par.y_init = txwyUTM_y(1)-y_nav; %m UTM Lat. format
 end
 
+%TODO: DELETE###########################################################
+% par.x_init = 0; %m UTM Lon. format
+% par.y_init = 0;
+%#######################################################################
+
 %TARGET CONDITIONS FOR THE MODEL
 par.v_target = 5; %m/s
 
@@ -64,12 +69,18 @@ par.count_targets = length(txwyUTM_x);
 %------------------------
 %analytical turn radius
 %------------------------
+% Turn radius for G.G.
 % L = par.l_xN + par.l_xR;
 % steer = 0.7;
 % 
 % R_dash = L/sin(steer);
 % R_dash_dash = R_dash * cos(steer);
 % R = sqrt(par.l_xR^2 + R_dash_dash^2);
+
+% Turn radius for Nose wheel
+% for delta = 30:5:75
+%    R = (par.l_xN+par.l_xR) / sin(degtorad(delta))
+% end
 
 %------------------------
 %Trajectory visualization

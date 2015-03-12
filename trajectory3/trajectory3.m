@@ -230,9 +230,9 @@ for i=1:step:(ii-resto)
     
     %draw already covered trajectory
     plot3(x(1:i),y(1:i),z(1:i),'blue');
-    plot3(wheels(1:i,1),wheels(1:i,2),z(1:i),'black'); %Nose
+    plot3(wheels(1:i,1),wheels(1:i,2),z(1:i),'blue'); %Nose
     plot3(wheels(1:i,3),wheels(1:i,4),z(1:i),'red'); %Right
-    plot3(wheels(1:i,5),wheels(1:i,6),z(1:i),'green'); %Left
+    plot3(wheels(1:i,5),wheels(1:i,6),z(1:i),'red'); %Left
     hold on;
     
     %draw target points
