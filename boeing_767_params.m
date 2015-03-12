@@ -20,22 +20,37 @@ par.g = 9.80665;
 %Aircraft inertia in Z-axis [kg*m^2]
 par.Inertia_z = 3335000;
 
-%Aircraft geometric model [m]
-par.l_yT_R = 5.755;
+%Aircraft geometric model [m] source: J. Rankin
+% par.l_yT_R = 5.755;
+% par.l_yT_L = par.l_yT_R;
+% par.l_yL = 3.795;
+% par.l_yR = par.l_yL;
+% 
+% par.l_xT = 0;
+% par.l_xL = 1.450;
+% par.l_xR = par.l_xL;
+% par.l_xN = 11.235; 
+% 
+% par.l_zT = 1.229;
+% par.l_zL = 2.932;
+% par.l_zR = par.l_zL;
+% par.l_zN = 2.932;
+
+%Aircraft geometric model [m] source: Boeing 737-400
+par.l_yT_R = 4.83;
 par.l_yT_L = par.l_yT_R;
-par.l_yL = 3.795;
+par.l_yL = 2.61;
 par.l_yR = par.l_yL;
-%par.l_yN = 1;
 
 par.l_xT = 0;
-par.l_xL = 1.450;
+par.l_xL = 3.73;
 par.l_xR = par.l_xL;
-par.l_xN = 11.235;
+par.l_xN = 10.54; 
 
 par.l_zT = 1.229;
 par.l_zL = 2.932;
 par.l_zR = par.l_zL;
-par.l_zN = 2.932;
+par.l_zN = par.l_zL;
 
 %Aircraft Aerodynamics
 par.rho = 1.225; %[kg/m^3]
