@@ -1,7 +1,7 @@
 % -----------------------------
 % Load gpx data of the airport taxiway markers
 %------------------------------
-INPUT = 'gpx\test_spiral_short';
+%INPUT = 'gpx\test_spiral_short';
 INPUT = 'gpx\txwy_osr_hangar'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
