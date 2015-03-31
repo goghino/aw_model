@@ -236,7 +236,7 @@ for i=1:step:(ii-resto)
     hold on;
     
     %draw target points
-    plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'ko'); hold on;
+    plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0.92,0.81,0.11]); hold on;
     
     grid on;
     hold on;
