@@ -2,7 +2,7 @@
 scale = 0.05;
 step = 1;
 
-SAMPLE = 0.333;
+SAMPLE = 0.06333;
 
 %Resampling time data to bigger time-step and adding offset to UTM
 %coordinates, so that we don't work with huge numbers but rather small
@@ -59,7 +59,7 @@ yaw = resample(PSI,time);
 targets=[txwyUTM_x - OFFSET_X txwyUTM_y - OFFSET_Y]';
 
 cd trajectory3;
-%theView=[-45 30];
+%theView=[180 40];
 theView=[0 90];
 trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,wheels,scale,step,'747',theView)
 cd ..;

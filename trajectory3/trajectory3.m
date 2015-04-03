@@ -219,24 +219,39 @@ yaw=yaw;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 MAX=(ii-resto);
-for i=1:step:(ii-resto)
+START = 1;
+for i=START:step:(ii-resto)
+    
+    if(i > MAX)
+        break;
+    end
 
     clf;
     %create offset between data limit values and figure edges to view whole
     %area and whole airplane when it reaches these limit values
-    offset=50;
-    plot3(min(x)-offset,min(y)-offset,x,'red'); hold on;
-    plot3(max(x)+offset,max(y)+offset,x,'red'); hold on;
+    WHOLE_TRACK = 1;
+    if(WHOLE_TRACK)
+        offset=50;
+        plot3(min(x)-offset,min(y)-offset,0,'white'); hold on;
+        plot3(max(x)+offset,max(y)+offset,0,'white'); hold on;
+    else
+        offset=25;
+        plot3(x(START)-offset,y(START)-offset,0,'white'); hold on;
+        plot3(x(START)+6*offset,y(START)+6*offset,0,'white'); hold on;  
+    end
     
     %draw already covered trajectory
-    plot3(x(1:i),y(1:i),z(1:i),'blue');
-    plot3(wheels(1:i,1),wheels(1:i,2),z(1:i),'blue'); %Nose
-    plot3(wheels(1:i,3),wheels(1:i,4),z(1:i),'red'); %Right
-    plot3(wheels(1:i,5),wheels(1:i,6),z(1:i),'red'); %Left
+    %plot3(x(1:i),y(1:i),z(1:i),'blue'); %C.G.
+    plot3(wheels(START:i,1),wheels(START:i,2),z(START:i),'blue'); %Nose
+    plot3(wheels(START:i,3),wheels(START:i,4),z(START:i),'red'); %Right
+    plot3(wheels(START:i,5),wheels(START:i,6),z(START:i),'red'); %Left
     hold on;
     
+    
     %draw target points
-    plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0.92,0.81,0.11]); hold on;
+    if(WHOLE_TRACK)
+        plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0.92,0.81,0.11]); hold on;
+    end
     
     grid on;
     hold on;
@@ -268,7 +283,7 @@ for i=1:step:(ii-resto)
     ylabel('Y');
     zlabel('Z');
 
-    if i == 1
+    if i == START
         ax = axis;
     else
         axis(ax);
