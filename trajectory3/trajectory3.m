@@ -219,7 +219,7 @@ yaw=yaw;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 MAX=(ii-resto);
-START = 1;
+START = 1; %MAX = 1800;
 for i=START:step:(ii-resto)
     
     if(i > MAX)

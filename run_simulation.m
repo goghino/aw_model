@@ -2,8 +2,8 @@
 % Load gpx data of the airport taxiway markers
 %------------------------------
 %INPUT = 'gpx\test_spiral_short';
-INPUT = 'gpx\txwy_osr_hangar'
-%INPUT = 'gpx\txwy_osr_hangar_taxi';
+%INPUT = 'gpx\txwy_osr_hangar'
+INPUT = 'gpx\txwy_osr_hangar_taxi'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
 %open map and display route
