@@ -219,7 +219,9 @@ yaw=yaw;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 MAX=(ii-resto);
-START = 1; %MAX = 1800;
+START = 1;
+%MAX = 200;
+WHOLE_TRACK = 1;
 for i=START:step:(ii-resto)
     
     if(i > MAX)
@@ -229,15 +231,14 @@ for i=START:step:(ii-resto)
     clf;
     %create offset between data limit values and figure edges to view whole
     %area and whole airplane when it reaches these limit values
-    WHOLE_TRACK = 1;
     if(WHOLE_TRACK)
         offset=50;
         plot3(min(x)-offset,min(y)-offset,0,'white'); hold on;
         plot3(max(x)+offset,max(y)+offset,0,'white'); hold on;
     else
         offset=25;
-        plot3(x(START)-offset,y(START)-offset,0,'white'); hold on;
-        plot3(x(START)+6*offset,y(START)+6*offset,0,'white'); hold on;  
+        plot3(x(START)-4*offset,y(START)-4*offset,0,'white'); hold on;
+        plot3(x(START)+offset,y(START)+offset,0,'white'); hold on;  
     end
     
     %draw already covered trajectory

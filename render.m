@@ -2,12 +2,13 @@
 scale = 0.05;
 step = 1;
 
-SAMPLE = 0.06333;
-
 %Resampling time data to bigger time-step and adding offset to UTM
 %coordinates, so that we don't work with huge numbers but rather small
 %distances, starting position of aircraft will allways have coordinates [0 0]
 %Resampling speed is 10x, resaple with step 0.033 to get realtime
+%SAMPLE = 0.06333;
+SAMPLE = 0.333;
+
 end_time = X.Time(length(X.Time));
 time = [0:SAMPLE:end_time];
 x = resample(X,time);
@@ -59,8 +60,8 @@ yaw = resample(PSI,time);
 targets=[txwyUTM_x - OFFSET_X txwyUTM_y - OFFSET_Y]';
 
 cd trajectory3;
-%theView=[180 40];
-theView=[0 90];
+theView=[30 40];
+%theView=[0 90];
 trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,wheels,scale,step,'747',theView)
 cd ..;
 
