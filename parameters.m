@@ -67,7 +67,7 @@ par.count_targets = length(txwyUTM_x);
 % linsolve(A,B);
 
 %------------------------
-%analytical turn radius
+%Analytical turn radius
 %------------------------
 % Turn radius for G.G.
 % L = par.l_xN + par.l_xR;
@@ -83,12 +83,11 @@ par.count_targets = length(txwyUTM_x);
 % end
 
 %------------------------
-%Trajectory visualization
+%Some more commands
 %------------------------
 % tspan=0:0.1:100;
 % sim('aero_ground_model',tspan);
-% plot(X.Data, Y.Data, 'r-');
-% plot(X.Data, Y.Data, 'b-', XR.Data, YR.Data, 'r-',XL.Data, YL.Data, 'g-',XN.Data, YN.Data, 'k-');
+
 % set_param('aero_ground_model', 'AlgebraicLoopSolver', 'LineSearch');
 % set_param('aero_ground_model','AlgebraicLoopSolver','TrustRegion');
 

@@ -1,6 +1,6 @@
 close all;
 % -----------------------------
-% Plot some graphs
+% Plot graphs of aero state
 %------------------------------
 %VELOCITY and VELOCITY ERROR
 figure();
@@ -64,3 +64,44 @@ legend('Velocity Error', 'Controller Response', 'Location', 'best');
 xlabel('Time [s]') % x-axis label
 ylabel('Velocity [m/s]') % y-axis label
 title('Velocity Controller Response(target v=5 m/s)');
+
+%VELOCITY ERROR AND BRAKES CONTROLLER RESPONSE
+figure();
+set(gca,'FontSize',25,'fontWeight','bold');
+h = plot(V_DIFF.Time, V_DIFF.Data, 'r-', BRAKES.Time, BRAKES.Data, 'k-');
+set(h(1),'linewidth',5);
+set(h(2),'linewidth',5);
+grid on; grid minor;
+legend('Velocity Error', 'Controller Response', 'Location', 'northeast');
+xlabel('Time [s]') % x-axis label
+ylabel('Velocity [m/s]') % y-axis label
+title('Brakes Controller Response');
+
+%DIFF BRAKES CONTROLLER RESPONSE
+figure();
+set(gca,'FontSize',25,'fontWeight','bold');
+h = plot(STEER.Time, STEER.Data, 'r-', R_BRAKE.Time, R_BRAKE.Data, 'k', L_BRAKE.Time, L_BRAKE.Data, 'b-');
+set(h(1),'linewidth',5);
+set(h(2),'linewidth',4);
+set(h(3),'linewidth',4);
+grid on; grid minor;
+legend('Steer Angle', 'R Brake', 'L Brake', 'Location', 'northeast');
+xlabel('Time [s]') % x-axis label
+ylabel('Steer [rad]') % y-axis label
+title('Brakes Controller Response');
+
+%------------------------
+%Trajectory visualization
+%set experiment to INPUT = 'gpx\test_spiral'; and T=660s
+%------------------------
+% figure();
+% set(gca,'FontSize',25,'fontWeight','bold');
+% h = plot(txwyUTM_x-txwyUTM_x(end), txwyUTM_y-txwyUTM_y(end), 'k-', XN.Data-txwyUTM_x(end), YN.Data-txwyUTM_y(end), 'b-');
+% grid on; grid minor;
+% set(h(1),'linewidth',5);
+% set(h(2),'linewidth',4);
+% xlabel('X [m]') % x-axis label
+% ylabel('Y [m]') % y-axis label
+% legend('Reference traj', 'Simulated traj', 'northeast');
+% title('Lateral displacement minimisation');
+% axis equal;
