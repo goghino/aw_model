@@ -6,8 +6,8 @@ step = 1;
 %coordinates, so that we don't work with huge numbers but rather small
 %distances, starting position of aircraft will allways have coordinates [0 0]
 %Resampling speed is 10x, resaple with step 0.033 to get realtime
-%SAMPLE = 0.06333;
-SAMPLE = 0.333;
+SAMPLE = 0.06333;
+%SAMPLE = 0.333;
 
 end_time = X.Time(length(X.Time));
 time = [0:SAMPLE:end_time];
@@ -49,6 +49,16 @@ xl.Data = xl.Data - OFFSET_X;
 yl = resample(YL,time);
 yl.Data = yl.Data - OFFSET_Y;
 
+%HEADING ERROR
+end_time = HEADING_ERR.Time(length(HEADING_ERR.Time));
+time = [0:SAMPLE:end_time];
+heading_err = resample(HEADING_ERR,time);
+
+%VELOCITY ERROR
+end_time = VELO_ERR.Time(length(VELO_ERR.Time));
+time = [0:SAMPLE:end_time];
+velo_err = resample(VELO_ERR,time);
+
 %wheels
 wheels = [xn.Data yn.Data xr.Data yr.Data xl.Data yl.Data];
 
@@ -60,9 +70,9 @@ yaw = resample(PSI,time);
 targets=[txwyUTM_x - OFFSET_X txwyUTM_y - OFFSET_Y]';
 
 cd trajectory3;
-theView=[30 40];
-%theView=[0 90];
-trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,wheels,scale,step,'747',theView)
+%theView=[30 40];
+theView=[0 90];
+trajectory3(x.Data,y.Data,z,roll,pitch,yaw.Data,targets,wheels,heading_err.Data,velo_err.Data,scale,step,'747',theView)
 cd ..;
 
 disp('DONE...');

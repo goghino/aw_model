@@ -1,4 +1,4 @@
-function trajectory3(x,y,z,pitch,roll,yaw,targets,wheels,scale_factor,step,selector,varargin);
+function trajectory3(x,y,z,pitch,roll,yaw,targets,wheels,heading_err,velo_err,scale_factor,step,selector,varargin);
 
 
 
@@ -61,7 +61,7 @@ function trajectory3(x,y,z,pitch,roll,yaw,targets,wheels,scale_factor,step,selec
 %                       positive down; the moment around Z body is positive
 %                       roll clockwise as viewed from above.
 
-if nargin<10
+if nargin<12
     disp('  Error:');
 
     disp('      Error: Invalid Number Inputs!');
@@ -92,16 +92,16 @@ if step<1
 
 end
 
-if nargin==12
+if nargin==14
     
     theView=cell2mat(varargin(1));
 
 end
-if nargin>12
+if nargin>14
     disp('Too many inputs arguments');
     return
 end
-if nargin<11
+if nargin<13
 
     %theView=[82.50 2];
     theView=[0 90];
@@ -222,13 +222,16 @@ MAX=(ii-resto);
 START = 1;
 %MAX = 200;
 WHOLE_TRACK = 1;
+
+
 for i=START:step:(ii-resto)
     
     if(i > MAX)
         break;
     end
-
+    
     clf;
+    set(gca,'FontSize',14,'fontWeight','bold');
     %create offset between data limit values and figure edges to view whole
     %area and whole airplane when it reaches these limit values
     if(WHOLE_TRACK)
@@ -248,10 +251,16 @@ for i=START:step:(ii-resto)
     plot3(wheels(START:i,5),wheels(START:i,6),z(START:i),'red'); %Left
     hold on;
     
-    
+    %title(strcat('\Delta_{PSI} = ',sprintf('%.2f rad',heading_err(i)),'   ','\Delta_{V} = ', sprintf('%.2f m/s',velo_err(i))));
+    handle=title(sprintf('DELTA_{PSI} = %.2f rad      DELTA_{V} = %.2f m/s',heading_err(i),velo_err(i)));
+    v = axis;
+    set(handle,'Position',[0 200]);
+    %legend(sprintf('DELTA_{PSI} = %.2f rad',heading_err(i)), sprintf('DELTA_{V} = %.2f m/s',velo_err(i)));
+
     %draw target points
     if(WHOLE_TRACK)
-        plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0.92,0.81,0.11]); hold on;
+        %'Color',[0.92,0.81,0.11]);    
+        %plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0,0,0]); hold on;
     end
     
     grid on;
