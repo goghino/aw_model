@@ -1,9 +1,10 @@
 % -----------------------------
 % Load gpx data of the airport taxiway markers
 %------------------------------
-%INPUT = 'gpx\test_spiral_short';
-%INPUT = 'gpx\txwy_osr_hangar'
-INPUT = 'gpx\txwy_osr_hangar_taxi'
+%INPUT = 'gpx\test_spiral';
+%INPUT = 'gpx\txwy_brq_full'
+INPUT = 'gpx\txwy_prh'
+%INPUT = 'gpx\txwy_osr_hangar_taxi'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
 %open map and display route
@@ -102,42 +103,3 @@ if(LEFT)
     end
     wmline(Lat, Lon, 'OverlayName', 'Aero L', 'Color', 'red');
 end
-
-% -----------------------------
-% Plot some graphs
-%------------------------------
-%VELOCITY and VELOCITY ERROR
-figure();
-set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(VELO.Time, VELO.Data, 'k-', VELO_ERR.Time, VELO_ERR.Data, 'r-');
-set(h(1),'linewidth',5);
-set(h(2),'linewidth',5);
-grid on; grid minor;
-legend('Velocity', 'Velocity Error', 'Location', 'best');
-xlabel('Time [s]') % x-axis label
-ylabel('Velocity [m/s]') % y-axis label
-title('Aeroplane Taxi Velocity (target v=5 m/s)');
-
-%VELOCITY ERROR AND CONTROLLER RESPONSE
-figure();
-set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(VELO_ERR.Time, VELO_ERR.Data, 'r-', VELO_PID.Time, VELO_PID.Data, 'k-');
-set(h(1),'linewidth',5);
-set(h(2),'linewidth',5);
-grid on; grid minor;
-legend('Velocity Error', 'Controller Response', 'Location', 'best');
-xlabel('Time [s]') % x-axis label
-ylabel('Velocity [m/s]') % y-axis label
-title('Velocity Controller Response(target v=5 m/s)');
-
-%PATHERROR
-figure();
-set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(PATHERROR.Time, PATHERROR.Data, 'k-');
-set(h(1),'linewidth',3);
-grid on; grid minor;
-legend('Patherror', 'Location', 'best');
-xlabel('Time [s]') % x-axis label
-ylabel('Patherror [m]') % y-axis label
-title('Aeroplane Taxi Patherror');
-

@@ -105,3 +105,5 @@ title('Brakes Controller Response');
 % legend('Reference traj', 'Simulated traj', 'northeast');
 % title('Lateral displacement minimisation');
 % axis equal;
+
+%xlim([0 N])
