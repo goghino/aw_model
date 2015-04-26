@@ -25,6 +25,22 @@ xlabel('Time [s]') % x-axis label
 ylabel('Patherror [m]') % y-axis label
 title('Aeroplane Taxi Patherror');
 
+%PATH and VELO ERR
+figure();
+set(gca,'FontSize',25,'fontWeight','bold');
+h = plot(PATHERROR.Time, PATHERROR.Data, 'k-', VELO_ERR.Time, VELO_ERR.Data, 'r-');
+set(h(1),'linewidth',3);
+set(h(2),'linewidth',3)
+grid on; grid minor;
+legend('Patherror [m]', 'Velocity error [m/s]' , 'Location', 'best');
+xlabel('Time [s]'); % x-axis label
+title('AutoTaxi Error');
+set(gcf, 'color', 'none');
+set(gca, 'color', 'none');
+%xlim([0 400]);
+%cd export_fig;
+%export_fig test.png
+
 % -----------------------------
 % Plot Controller responses
 %------------------------------

@@ -3,6 +3,7 @@
 %------------------------------
 %INPUT = 'gpx\test_spiral';
 %INPUT = 'gpx\txwy_brq_full'
+%INPUT = 'gpx\txwy_dub'
 INPUT = 'gpx\txwy_prh'
 %INPUT = 'gpx\txwy_osr_hangar_taxi'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
