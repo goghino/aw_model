@@ -1,6 +1,17 @@
+%     This program is free software: you can redistribute it and/or modify
+%     it under the terms of the GNU General Public License as published by
+%     the Free Software Foundation, either version 3 of the License, or
+%     (at your option) any later version.
+% 
+%     This program is distributed in the hope that it will be useful,
+%     but WITHOUT ANY WARRANTY; without even the implied warranty of
+%     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%     GNU General Public License for more details.
+% 
+%     You should have received a copy of the GNU General Public License
+%     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 function trajectory3(x,y,z,pitch,roll,yaw,targets,wheels,heading_err,velo_err,scale_factor,step,selector,varargin);
-
-
 
 %   *******************************
 %   Original file:
@@ -220,13 +231,17 @@ yaw=yaw;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 MAX=(ii-resto);
 START = 1;
-%MAX = 200;
-WHOLE_TRACK = 1;
+WHOLE_TRACK = 1;  %  0 - only part, 1 - full trajectory
+title_pos = [-100 0]; % position of delta info
 
+if(WHOLE_TRACK == 0)
+    MAX = 50; %percentage of whole track
+    max_wpts = 30; %max conunt of target wpts
+end
 
 for i=START:step:(ii-resto)
     
-    if(i > MAX)
+    if(i > MAX/100*length(wheels(:,1)))
         break;
     end
     
@@ -251,16 +266,19 @@ for i=START:step:(ii-resto)
     plot3(wheels(START:i,5),wheels(START:i,6),z(START:i),'red'); %Left
     hold on;
     
-    %title(strcat('\Delta_{PSI} = ',sprintf('%.2f rad',heading_err(i)),'   ','\Delta_{V} = ', sprintf('%.2f m/s',velo_err(i))));
+    %Print delta info
     handle=title(sprintf('DELTA_{PSI} = %.2f rad      DELTA_{V} = %.2f m/s',heading_err(i),velo_err(i)));
     v = axis;
-    set(handle,'Position',[0 200]);
-    %legend(sprintf('DELTA_{PSI} = %.2f rad',heading_err(i)), sprintf('DELTA_{V} = %.2f m/s',velo_err(i)));
-
+    set(handle,'Position',title_pos); %coordinates in plot
+    
+    
     %draw target points
     if(WHOLE_TRACK)
         %'Color',[0.92,0.81,0.11]);    
-        %plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0,0,0]); hold on;
+        plot3(targets(1,:),targets(2,:),zeros(1,length(targets(1,:))),'Color',[0,0,0]); hold on;
+    else
+        lim = max_wpts;
+        plot3(targets(1,1:lim),targets(2,1:lim),zeros(1,lim),'Color',[0,0,0]); hold on;
     end
     
     grid on;

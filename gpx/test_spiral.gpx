@@ -63,42 +63,6 @@
       <trkpt lat="49.69467" lon="18.11464">
         <time>2015-02-23T02:35:10Z</time>
       </trkpt>
-      <trkpt lat="49.6938" lon="18.11465">
-        <time>2015-02-23T02:50:16Z</time>
-      </trkpt>
-      <trkpt lat="49.6938" lon="18.11371">
-        <time>2015-02-23T03:00:49Z</time>
-      </trkpt>
-      <trkpt lat="49.6945" lon="18.1137">
-        <time>2015-02-23T03:12:58Z</time>
-      </trkpt>
-      <trkpt lat="49.6945" lon="18.11439">
-        <time>2015-02-23T03:20:43Z</time>
-      </trkpt>
-      <trkpt lat="49.694" lon="18.11439">
-        <time>2015-02-23T03:29:24Z</time>
-      </trkpt>
-      <trkpt lat="49.694" lon="18.11387">
-        <time>2015-02-23T03:35:14Z</time>
-      </trkpt>
-      <trkpt lat="49.69439" lon="18.11387">
-        <time>2015-02-23T03:42:00Z</time>
-      </trkpt>
-      <trkpt lat="49.69439" lon="18.11425">
-        <time>2015-02-23T03:46:16Z</time>
-      </trkpt>
-      <trkpt lat="49.69408" lon="18.11425">
-        <time>2015-02-23T03:51:39Z</time>
-      </trkpt>
-      <trkpt lat="49.69409" lon="18.11399">
-        <time>2015-02-23T03:54:34Z</time>
-      </trkpt>
-      <trkpt lat="49.69428" lon="18.11399">
-        <time>2015-02-23T03:57:52Z</time>
-      </trkpt>
-      <trkpt lat="49.69429" lon="18.11419">
-        <time>2015-02-23T04:00:07Z</time>
-      </trkpt>
     </trkseg>
   </trk>
 </gpx>
