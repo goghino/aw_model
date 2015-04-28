@@ -20,16 +20,14 @@ predefined target destination.
 
 **USAGE:**
 
-Initialize model using script thats specifies aircraft parameters and environmental conditions:
+Run simulation using script
 ```
->> parameters
+>> run_simulation
 ```
+It initializes model with aircraft parameters and environmental conditions and
+specifies target trajectory for aircraft during taxi phase. Script then calls
+simulink model and executes the simulation.
 
-Run simulation using Simulink interface or by executing
-```
->> tspan=0:0.1:100;
->> sim('aero_ground_model',tspan);
-```
 
 When simulation is finished visualize aircraft motion:
 ```
