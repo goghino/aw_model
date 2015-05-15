@@ -12,31 +12,34 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 close all;
-% -----------------------------
-% Plot graphs of aero state
-%------------------------------
+% ----------------------------------------------------------------
+% Plot graphs of the aircraft's ground motion simulation
+%-----------------------------------------------------------------
 %VELOCITY and VELOCITY ERROR
 figure();
 set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(VELO.Time, VELO.Data, 'k-', VELO_ERR.Time, VELO_ERR.Data, 'r-');
-set(h(1),'linewidth',5);
-set(h(2),'linewidth',5);
+targetVelo = ones(size(VELO.Time)) * par.v_target;
+h = plot(VELO.Time, VELO.Data, 'k-', VELO.Time, targetVelo, 'r-');
+set(h(1),'linewidth',3);
+set(h(2),'linewidth',3);
 grid on; grid minor;
-legend('Velocity', 'Velocity Error', 'Location', 'best');
+legend('Velocity', 'Target Velocity', 'Location', 'best');
 xlabel('Time [s]') % x-axis label
 ylabel('Velocity [m/s]') % y-axis label
-title('Aeroplane Taxi Velocity (target v=5 m/s)');
+title('Aircraft Taxi Velocity (target v=5 m/s)');
 
 %PATHERROR
 figure();
 set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(PATHERROR.Time, PATHERROR.Data, 'k-');
-set(h(1),'linewidth',3);
+limitError = ones(size(PATHERROR.Time)) * par.switch_distance;
+h = plot(PATHERROR.Time, PATHERROR.Data, 'k-', PATHERROR.Time, limitError, 'r-');
+set(h(1),'linewidth',2);
+set(h(2),'linewidth',3);
 grid on; grid minor;
-legend('Patherror', 'Location', 'best');
+legend('Trajectory Offset', 'MAX Offset', 'Location', 'best');
 xlabel('Time [s]') % x-axis label
-ylabel('Patherror [m]') % y-axis label
-title('Aeroplane Taxi Patherror');
+ylabel('Offset [m]') % y-axis label
+title('Aircraft Taxi Trajectory Offset');
 
 %PATH and VELO ERR
 figure();
@@ -45,7 +48,7 @@ h = plot(PATHERROR.Time, PATHERROR.Data, 'k-', VELO_ERR.Time, VELO_ERR.Data, 'r-
 set(h(1),'linewidth',3);
 set(h(2),'linewidth',3)
 grid on; grid minor;
-legend('Patherror [m]', 'Velocity error [m/s]' , 'Location', 'best');
+legend('Trajectory Offset [m]', 'Velocity error [m/s]' , 'Location', 'best');
 xlabel('Time [s]'); % x-axis label
 title('AutoTaxi Error');
 set(gcf, 'color', 'none');
@@ -57,18 +60,19 @@ set(gca, 'color', 'none');
 % -----------------------------
 % Plot Controller responses
 %------------------------------
+rad2deg = 57.2957795;
 
 %HEADING ERROR AND CONTROLLER RESPONSE
 figure();
 set(gca,'FontSize',25,'fontWeight','bold');
-h = plot(HEADING_ERR.Time, HEADING_ERR.Data, 'r-', HEADING_PID.Time, HEADING_PID.Data, 'k-');
+h = plot(HEADING_ERR.Time, HEADING_ERR.Data*rad2deg, 'r-', HEADING_PID.Time, HEADING_PID.Data*rad2deg, 'k-');
 set(h(1),'linewidth',5);
 set(h(2),'linewidth',5);
 grid on; grid minor;
 legend('Heading Error', 'Controller Response', 'Location', 'northeast');
 xlabel('Time [s]') % x-axis label
-ylabel('Heading [rad]') % y-axis label
-title('Heading Controller Response');
+ylabel('Heading [deg]') % y-axis label
+title('Directional Controller Response');
 
 %PATH ERROR AND CONTROLLER RESPONSE
 figure();
@@ -104,7 +108,7 @@ grid on; grid minor;
 legend('Velocity Error', 'Controller Response', 'Location', 'northeast');
 xlabel('Time [s]') % x-axis label
 ylabel('Velocity [m/s]') % y-axis label
-title('Brakes Controller Response');
+title('Brake Controller Response');
 
 %DIFF BRAKES CONTROLLER RESPONSE
 figure();
@@ -117,7 +121,7 @@ grid on; grid minor;
 legend('Steer Angle', 'R Brake', 'L Brake', 'Location', 'northeast');
 xlabel('Time [s]') % x-axis label
 ylabel('Steer [rad]') % y-axis label
-title('Brakes Controller Response');
+title('Brake Controller Response');
 
 %------------------------
 %Trajectory visualization

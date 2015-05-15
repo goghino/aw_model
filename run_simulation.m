@@ -12,7 +12,7 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 % -----------------------------
-% Load gpx data of the airport taxiway markers
+% Load gpx track for AutoTaxi 
 %------------------------------
 %INPUT = 'gpx\test_spiral';
 %INPUT = 'gpx\txwy_brq_full'
@@ -25,9 +25,10 @@ txwy = gpxread(INPUT, 'FeatureType', 'track');
 webmap('WorldTopographicMap')
 wmline(txwy, 'OverlayName', 'TXWY', 'Color', 'yellow');
 
-%markers of individual pts approximating txwy with radius R=par.switch_distance
+% Display markers of individual wpts approximating
+% the txwy with radius R=par.switch_distance
 % wpt_names = cell(size(txwy));
-% radius = 4;
+% radius = 3;
 % az=[];
 % for i=1:size(txwy)
 %     wpt_names{i} = ['Waypoint ' num2str(i)]; 
@@ -48,21 +49,27 @@ end
 % -----------------------------
 %   HERE GOES THE SIMULATION
 %------------------------------
+% Load aircraft and environment parameters
 parameters;
-%set_param('aero_ground_model','MaskedZcDiagnostic','warning');
+
+% Perfom the simulation
+disp('RUNNING SIMULATION...');
 simOut = sim('aero_ground_model');
 
 
 % -----------------------------
-% Transform airplane trajectory to WGS84 and display on map
+% Transform simulated aircraft's trajectory to WGS84 and display on map
 %------------------------------
+% Selects which feature trajectories are shown on the map
 CG = 0;
 NOSE = 1;
 LEFT = 1;
 RIGHT = 1;
 
+% Step size for resampling the time series
 SAMPLE = 0.333;
 
+% C.G.
 if(CG)
     end_time = X.Time(length(X.Time));
     time = [0:SAMPLE:end_time]; 
@@ -76,7 +83,7 @@ if(CG)
     wmline(Lat, Lon, 'OverlayName', 'Aero', 'Color', 'blue');
 end
 
-%nose wheel
+% Nose wheel
 if(NOSE)
     end_time = XN.Time(length(XN.Time));
     time = [0:SAMPLE:end_time]; 
@@ -90,7 +97,7 @@ if(NOSE)
     wmline(Lat, Lon, 'OverlayName', 'Aero N', 'Color', 'black');
 end
 
-%right wheel
+% Right wheel
 if(RIGHT)
     end_time = XR.Time(length(XR.Time));
     time = [0:SAMPLE:end_time]; 
@@ -104,7 +111,7 @@ if(RIGHT)
     wmline(Lat, Lon, 'OverlayName', 'Aero R', 'Color', 'red');
 end
 
-%left wheel
+% Left wheel
 if(LEFT)
     end_time = XL.Time(length(XL.Time));
     time = [0:SAMPLE:end_time]; 

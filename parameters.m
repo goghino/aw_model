@@ -11,30 +11,37 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%load airplane parameters
+%load airplane specific parameters
 boeing_767_params;
 
 % Tracking method selection
-% Defines which aero's point is tracked: either NOSE or GC
+% Defines which aircraft's part is tracked: either nose wheel or C.G.
 par.NOSE = 1;
 par.CG = 2;
 par.TRACKING = par.NOSE;
 
-%INITIAL CONDITIONS FOR THE MODEL
+%INITIAL VELOCITY FOR THE MODEL
 par.vx_init = 0; %m/s
 par.vy_init = 0; %m/s
 par.wz_init = 0; %rad/s
 
-%heading,zero=EAST, positive to pilot right hand (inverse unitary circle)
+%TARGET VELOCITY FOR THE MODEL
+par.v_target = 5; %m/s
+
+% Heading is initialized by orientation of
+%vector from first to second waypoint
 par.heading_init = atan2(txwyUTM_y(2)-txwyUTM_y(1), txwyUTM_x(2)-txwyUTM_x(1));%rad
+
 %transform from -pi,pi to 0-2pi and inverse unitary circle direction
+% -zero heading is at east
+% -positive rotation to pilot right hand (inverse unitary circle)
 if(par.heading_init<0)
     par.heading_init = abs(par.heading_init);
 else
     par.heading_init = 2*pi - par.heading_init;
 end
 
-%set starting position to first txwy waypoint
+% Set init position to first txwy waypoint
 if(par.TRACKING == par.CG)
     par.x_init = txwyUTM_x(1); %m UTM Lon. format
     par.y_init = txwyUTM_y(1); %m UTM Lat. format
@@ -49,14 +56,6 @@ else
     par.y_init = txwyUTM_y(1)-y_nav; %m UTM Lat. format
 end
 
-%TODO: DELETE###########################################################
-% par.x_init = 0; %m UTM Lon. format
-% par.y_init = 0;
-%#######################################################################
-
-%TARGET CONDITIONS FOR THE MODEL
-par.v_target = 5; %m/s
-
 %environment settings
 environ.dry = 1;
 environ.wet = 2;
@@ -68,6 +67,7 @@ par.switch_distance = 3; %m
 par.count_targets = length(txwyUTM_x);
 
 %==========================================================================
+% Following are just helper functions for debug
 %---------------------------------
 %Solver for weight decomposition
 %----------------------------------
