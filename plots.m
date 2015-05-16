@@ -41,6 +41,8 @@ xlabel('Time [s]') % x-axis label
 ylabel('Offset [m]') % y-axis label
 title('Aircraft Taxi Trajectory Offset');
 
+return;
+
 %PATH and VELO ERR
 figure();
 set(gca,'FontSize',25,'fontWeight','bold');
@@ -54,6 +56,7 @@ title('AutoTaxi Error');
 set(gcf, 'color', 'none');
 set(gca, 'color', 'none');
 %xlim([0 400]);
+%%ylim([a b])
 %cd export_fig;
 %export_fig test.png
 
@@ -135,8 +138,6 @@ title('Brake Controller Response');
 % set(h(2),'linewidth',4);
 % xlabel('X [m]') % x-axis label
 % ylabel('Y [m]') % y-axis label
-% legend('Reference traj', 'Simulated traj', 'northeast');
-% title('Lateral displacement minimisation');
+% legend('Reference', 'Simulated');
+% title('Aircraft Trajectory');
 % axis equal;
-
-%xlim([0 N])

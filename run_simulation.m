@@ -15,10 +15,9 @@
 % Load gpx track for AutoTaxi 
 %------------------------------
 %INPUT = 'gpx\test_spiral';
-%INPUT = 'gpx\txwy_brq_full'
-%INPUT = 'gpx\txwy_dub1'
+%INPUT = 'gpx\txwy_brq'
 INPUT = 'gpx\txwy_prh'
-%INPUT = 'gpx\txwy_osr_hangar_taxi'
+%INPUT = 'gpx\txwy_osr'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
 %open map and display route

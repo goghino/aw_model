@@ -64,10 +64,12 @@ par.environ = environ.dry;
 
 %distance to target when model switches to next target
 par.switch_distance = 3; %m
+
+%count of target wpts so that we know when to stop
 par.count_targets = length(txwyUTM_x);
 
 %==========================================================================
-% Following are just helper functions for debug
+% Following are just helper debug routines
 %---------------------------------
 %Solver for weight decomposition
 %----------------------------------
