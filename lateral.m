@@ -128,8 +128,8 @@ xlim([-5 60]);
 %ENGINE MODEL
 % figure();
 % limitThrust = ones(size(step.Time)) * par.max_thrust;
-% set(gca,'FontSize',25,'fontWeight','bold');
-% set(findall(gcf,'type','text'),'FontSize',30,'fontWeight','bold');
+% set(gca,'FontSize',25);
+% set(findall(gcf,'type','text'),'FontSize',25);
 % h = plot(step.Time, step.Data, step.Time, thrust.Data, 'r-', step.Time, limitThrust, 'k--');
 % set(h(1),'linewidth',4);
 % set(h(2),'linewidth',4);
