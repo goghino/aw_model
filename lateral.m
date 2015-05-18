@@ -44,18 +44,19 @@ for i = 1:61
 end
 
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 h = plot(velo, Fy, 'b-', velo, Fy1, 'r-', velo, Fy11, 'g-', velo, Fy2, 'bo', velo, Fy3, 'ro');
 set(h(1),'linewidth',2);
 set(h(2),'linewidth',2);
 set(h(3),'linewidth',2);
 set(h(4),'linewidth',2);
 set(h(5),'linewidth',2);
-legend('nominal DRY','nominal WET', 'nominal ICE', '0.8p DRY','0.8p WET','Location','southeast');
+legend('nominal dry','nominal wet', 'nominal ice', '0.8p dry','0.8p wet');
 xlabel('Velocity [m/s]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
-title('Effective Braking Friction Coefficient vs. Speed');
+grid on;
+%title('Effective Braking Friction Coefficient vs. Speed');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,13 +82,14 @@ end
 
 alpha_i = alpha_i.*57.2957795;
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 plot(alpha_i,Fy,alpha_i,Fy1,alpha_i,Fy3,alpha_i,Fy2);
 legend('nominal','0.8Fz','0.8p','1.2Fz');
 xlabel('Tire angle [deg]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
-title(sprintf('Lateral Friction Coefficient vs. Tire Yaw Angle (v=%d m/s, Fz=%d kN, DRY and Kb=%.1f)',v, Fz/1000,Kb));
+grid on;
+%title(sprintf('Lateral Friction Coefficient vs. Tire Yaw Angle (v=%d m/s, Fz=%d kN, DRY and Kb=%.1f)',v, Fz/1000,Kb));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -110,33 +112,35 @@ end
 
 walpha = walpha.*57.2957795;
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 h = plot(walpha,wFy,'b-',walpha,wFy1,'r-',walpha,wFy2,'g-',walpha,wFy3,'ro',walpha,wFy33,'bo');
 set(h(1),'linewidth',2);
 set(h(2),'linewidth',2);
 set(h(3),'linewidth',2);
 set(h(4),'linewidth',2);
 set(h(5),'linewidth',2);
-legend('nominal DRY','nominal WET','nominal ICE','1.2Fz WET', '1.2Fz DRY');
+legend('nominal dry','nominal wet','nominal ice','1.2Fz wet', '1.2Fz dry');
 xlabel('Tire angle [deg]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
-title(sprintf('Lateral Friction Coeff. (v=%d m/s, Fz=%d kN and Kb=%.1f)',v, Fz/1000,Kb));
+grid on;
+%title(sprintf('Lateral Friction Coeff. (v=%d m/s, Fz=%d kN and Kb=%.1f)',v, Fz/1000,Kb));
 xlim([-5 60]);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %ENGINE MODEL
-% figure();
-% limitThrust = ones(size(step.Time)) * par.max_thrust;
-% set(gca,'FontSize',25);
-% set(findall(gcf,'type','text'),'FontSize',25);
-% h = plot(step.Time, step.Data, step.Time, thrust.Data, 'r-', step.Time, limitThrust, 'k--');
-% set(h(1),'linewidth',4);
-% set(h(2),'linewidth',4);
-% set(h(3),'linewidth',2);
-% legend('Step', 'Response', 'Max Thrust');
-% xlabel('Time [s]') % x-axis label
-% ylabel('Force [N]') % y-axis label
+figure();
+limitThrust = ones(size(step.Time)) * par.max_thrust;
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
+h = plot(step.Time, step.Data, step.Time, thrust.Data, 'r-', step.Time, limitThrust, 'k--');
+set(h(1),'linewidth',4);
+set(h(2),'linewidth',4);
+set(h(3),'linewidth',2);
+legend('Step', 'Response', 'Max Thrust');
+xlabel('Time [s]') % x-axis label
+ylabel('Force [N]') % y-axis label
+grid on;
 % title('Engine Model Step Response');
 
 % num = [par.max_thrust];
@@ -171,13 +175,14 @@ for i = 1:61
 end
 
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 plot(velo,vFy,velo,vFy1,velo,vFy2,velo,vFy3,velo,vFy4);
 legend('nominal','0.8Fz','1.2Fz','kB = 0.3','kB = 1');
 xlabel('Speed [m/s]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
-title(sprintf('Lateral Friction Coefficient vs. Velocity, (PSI = %.1f deg, Fz=%d kN, DRY)',aalpha/0.01745,Fz/1000));
+grid on;
+%title(sprintf('Lateral Friction Coefficient vs. Velocity, (PSI = %.1f deg, Fz=%d kN, DRY)',aalpha/0.01745,Fz/1000));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -198,19 +203,20 @@ for i = 1:61
 end
 
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 h=plot(v_i,wFy,'b-',v_i,wFy1,'r-',v_i,wFy2,'g-',v_i,wFy3,'bo',v_i,wFy4,'ro');
 set(h(1),'linewidth',2);
 set(h(2),'linewidth',2);
 set(h(3),'linewidth',2);
 set(h(4),'linewidth',2);
 set(h(5),'linewidth',2);
-legend('nominal DRY','nominal WET','nominal ICE','1.2Fz DRY','1.2Fz WET');
+legend('nominal dry','nominal wet','nominal ice','1.2Fz dry','1.2Fz wet');
 xlabel('Speed [m/s]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
 alphaDeg = walpha/0.01745;
-title(sprintf('Lateral Friction Coeff. (PSI=%.1f deg, Fz=%d kN and Kb=%.1f)',alphaDeg, Fz/1000,Kb));
+grid on;
+%title(sprintf('Lateral Friction Coeff. (PSI=%.1f deg, Fz=%d kN and Kb=%.1f)',alphaDeg, Fz/1000,Kb));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -312,8 +318,8 @@ for i = 1:217
 end
 
 figure();
-set(gca,'FontSize',25);
-set(findall(gcf,'type','text'),'FontSize',25);
+set(gca,'FontSize',20);
+set(findall(gcf,'type','text'),'FontSize',20);
 walpha = walpha./0.01745;
 h = plot(walpha,Fy,'b',walpha,Fy1,'g',walpha,Fy2,'r',walpha,Fy3,'k',walpha,Fy4,'ob',walpha,Fy5,'ok',walpha,Fy44,'xb',walpha,Fy55,'xk');
 set(h(1),'linewidth',2);
@@ -324,8 +330,9 @@ set(h(5),'linewidth',1);
 set(h(6),'linewidth',1);
 set(h(7),'linewidth',1);
 set(h(8),'linewidth',1);
-legend('Kb = 0','Kb = 0.3','Kb = 0.6','Kb = 1', 'Kb = 0 WET', 'Kb = 1 WET', 'Kb = 0 ICE', 'Kb = 1 ICE');
+legend('Kb = 0 dry','Kb = 0.3 dry','Kb = 0.6 dry','Kb = 1 dry', 'Kb = 0 wet', 'Kb = 1 wet', 'Kb = 0 ice', 'Kb = 1 ice');
 xlabel('Yaw angle [deg]') % x-axis label
 ylabel('Friction coeff.') % y-axis label
 xlim([-5 60]);
-title(sprintf('Lateral Friction Coefficient during Braking (v=%d m/s, Fz=%d kN)',v, Fz/1000));
+grid on;
+%title(sprintf('Lateral Friction Coefficient during Braking (v=%d m/s, Fz=%d kN)',v, Fz/1000));

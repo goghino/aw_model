@@ -16,8 +16,8 @@
 %------------------------------
 %INPUT = 'gpx\test_spiral';
 %INPUT = 'gpx\txwy_brq'
-INPUT = 'gpx\txwy_prh'
-%INPUT = 'gpx\txwy_osr'
+%INPUT = 'gpx\txwy_prh'
+INPUT = 'gpx\txwy_osr'
 txwy = gpxread(INPUT, 'FeatureType', 'track');
 
 %open map and display route
