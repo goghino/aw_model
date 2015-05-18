@@ -19,7 +19,7 @@ which is able to regulate the aircraft velocity with respect to the reference va
 automatically steer the aircraft to the predefined target destination based on the provided
 reference trajectory. Simulation results were subjected to a comparison with the analytical
 solution of the Ackerman drive for a tricycle vehicle and with turn radii specified in
-Airplane Characteristics for Airport Planning  issued by Boeing. Obtained results confirm
+Airplane Characteristics for Airport Planning  issued by Boeing. Obtained results confirmed
 high-precision real-time simulation.
 
 **USAGE:**
@@ -33,7 +33,7 @@ specifies the target trajectory for the aircraft during taxi phase. The script t
 calls Simulink model and executes the simulation.
 
 
-When simulation is finished visualize aircraft motion:
+When simulation is finished visualize the aircraft motion:
 ```
 >> render
 ```
